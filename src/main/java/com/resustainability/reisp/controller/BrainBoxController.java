@@ -96,8 +96,8 @@ public class BrainBoxController {
 	public ModelAndView bbForm(@ModelAttribute User user,BrainBox obj, HttpSession session) {
 		ModelAndView model = new ModelAndView(PageConstants.bbForm);
 		String userId = null;
-		String userName = null;
-		List<BrainBox> companiesList = null;
+		String userName = null;    
+		List<BrainBox> companiesList = null; 
 		String role = null;String idea_role = null;
 		try {
 			userId = (String) session.getAttribute("USER_ID");
