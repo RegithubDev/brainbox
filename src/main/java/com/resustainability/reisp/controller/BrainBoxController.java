@@ -91,7 +91,7 @@ public class BrainBoxController {
 	
 	@Value("${template.upload.formatError}")
 	public String uploadformatError;
-	
+	 
 	@RequestMapping(value = "/bb-is", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView bbForm(@ModelAttribute User user,BrainBox obj, HttpSession session) {
 		ModelAndView model = new ModelAndView(PageConstants.bbForm);
@@ -101,7 +101,7 @@ public class BrainBoxController {
 		String role = null;String idea_role = null;
 		try {
 			userId = (String) session.getAttribute("USER_ID");
-			userName = (String) session.getAttribute("USER_NAME");
+			userName = (String) session.getAttribute("USER_NAME"); 
 			role = (String) session.getAttribute("BASE_ROLE");idea_role = (String) session.getAttribute("IDEA_BASE_ROLE");
 			String email = (String) session.getAttribute("USER_EMAIL");
 			user.setRole(role);
