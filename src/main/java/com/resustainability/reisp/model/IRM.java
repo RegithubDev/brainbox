@@ -11,7 +11,7 @@ public class IRM {
 	approver_type,	approver_code	,	assigned_on,employee_code,	action_taken,incident_code,	corrective_action,location_code,from_date,to_date,	preventive_action,user_name,
 	approver_name,	remarks,approver_type_before,employee_code_before,not_assigned, statusChanged,next_level_user,approver_type_name,from_and_to,sbu_code,sbu_name,role,user,
 	admin_incidents , i_pending ,i_completed,sb_rei_notes,person_location,reinitiate_date,sb_date,ca_before,pa_before,remarks_before,doc_before,type_prevs,approver_prvs,
-			person_responsible	,doc,capa_id,rca_id,tentative_date,investigation_team,base_role,base_department	,counts,ca,pa,level_status,	attachments,incident_types,	incident_seviourity,incident_category,	ua_type,	uc_type,	management_type	;
+			person_responsible,otp_code	,doc,capa_id,rca_id,tentative_date,investigation_team,base_role,base_department	,counts,ca,pa,level_status,	attachments,incident_types,	incident_seviourity,incident_category,	ua_type,	uc_type,	management_type	;
 
 	List<IRM> irmFilesList;
 	List<IRM> irmIncidentsList;
@@ -20,6 +20,14 @@ public class IRM {
 
 	private MultipartFile[] mediaList;
 	
+	public String getOtp_code() {
+		return otp_code;
+	}
+
+	public void setOtp_code(String otp_code) {
+		this.otp_code = otp_code;
+	}
+
 	public String getProject() {
 		return project;
 	}

@@ -33,6 +33,6 @@ public class CommonConstants {
 //////////////////////////////// Production ////////////////////////////////////////////////////////////
 	
 	public final static String HOST = "https://appmint.resustainability.com/";
-	
+	public final static String HOME = "https://internal.resustainability.com/brainbox/";
 	
 }

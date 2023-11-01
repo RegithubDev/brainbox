@@ -2,13 +2,37 @@ package com.resustainability.reisp.model;
 
 public class User {
 
-	private String user_id,user_name,user_role,department_name,user_session_id,minutes,sbu_code,project,sbu,gToken,reporting_to,reporting_to_id,profileImg,current_project,id,	last_login_date_time,totalCount,password,email_id,mobile_number,user_name_new,designation_new,email_new,contact_number,totalUers,count,
+	private String user_id,user_name,user_role,version_no,reporting_user_name,last_sync_time,department_name,user_session_id,minutes,sbu_code,project,sbu,gToken,reporting_to,reporting_to_id,profileImg,current_project,id,	last_login_date_time,totalCount,password,email_id,mobile_number,user_name_new,designation_new,email_new,contact_number,totalUers,count,
 	company_code,	project_code,department_code,sub_code,action,	project_name,	status,	created_date,	created_by,	modified_date,	modified_by,all_users,active_users,inActive_users,
 	location_code,	location_name,	company_name,module_id,	module_type,role,p_add,p_view,p_edit,p_approvals,p_reports,p_dashboards,p_auto_email,
 	base_sbu,base_project,base_role,message,sbu_name,end_date,days,hours,last_login,reward_points,idea_base_role,	user_login_time,base_department,	user_logout_time,device_type,device_type_no,
 	module_name,module_url,timePeriod;
 	int session_count,time_period;
 	
+	public String getVersion_no() {
+		return version_no;
+	}
+
+	public void setVersion_no(String version_no) {
+		this.version_no = version_no;
+	}
+
+	public String getReporting_user_name() {
+		return reporting_user_name;
+	}
+
+	public void setReporting_user_name(String reporting_user_name) {
+		this.reporting_user_name = reporting_user_name;
+	}
+
+	public String getLast_sync_time() {
+		return last_sync_time;
+	}
+
+	public void setLast_sync_time(String last_sync_time) {
+		this.last_sync_time = last_sync_time;
+	}
+
 	public String getDepartment_name() {
 		return department_name;
 	}
