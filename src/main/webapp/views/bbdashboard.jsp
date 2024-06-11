@@ -11,7 +11,7 @@
     <meta name="description" content="Safety admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 BrainBox with unlimited possibilities.">
     <meta name="keywords" content="admin template,BrainBox , Safety admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-  <title>Idea Bank </title>
+  <title>BB- Dashboard </title>
         <link rel="icon" type="image/png" sizes="96x96" href="/brainbox/resources/images/protect-favicon.png" >
 
 	<script src="/brainbox/resources/js/jQuery-v.3.5.min.js"  ></script>
@@ -144,7 +144,9 @@
              		
 					</c:forEach>
 		         </c:when>
-		        
+		         <c:otherwise>
+		           
+		         </c:otherwise>
 		      </c:choose>
           </div>
           
