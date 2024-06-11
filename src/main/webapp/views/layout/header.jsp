@@ -73,8 +73,6 @@
         </div> 
         <ul class="nav navbar-nav align-items-center ms-auto">
          
-          <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
-          <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
             <div class="search-input">
               <div class="search-input-icon"><i data-feather="search"></i></div>
               <input class="form-control input" type="text" placeholder="Explore Safety..." tabindex="-1" data-search="search">

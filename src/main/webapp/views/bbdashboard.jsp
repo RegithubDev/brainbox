@@ -141,31 +141,10 @@
              		     <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
              		 <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
              		 
-             		 <c:if test="${index.count 	<= 5 }">
-             		 <p  >
-             		 <c:if test="${filesListss[index.count - 1] eq 'In Progress' }"><i class='fa-solid fa-circle teal-color fa-fade' style="--fa-animation-duration: 2s; --fa-fade-opacity: 0.6; font-size: 10px;" ></i></c:if> 
-             		 <c:if test="${filesListss[index.count - 1] eq 'Resolved' }"><i class='fa fa-circle green-color'  style="font-size: 10px;"></i></c:if> 
-             		 <c:if test="${filesListss[index.count - 1] eq 'Rejected' }"><i class='fa fa-circle red-color'  style="font-size: 10px;"></i></c:if> &nbsp;
-             		 
-             		 
-             		  <a  href="javascript:void(0);" onclick="getIdea('${ obj}','${ obj1.theme_code}');"  id="stdname" title="click to View ${filesList[index.count - 1]}"  class="">${filesList[index.count - 1]}
-             		   <span style="display:none"> ${sbus[index.count - 1]} - ${sbun[index.count - 1]}</span> </a><c:if test="${index.count eq 5 && fn:length(sbus) gt 5}">  ... </c:if>
-             		  
-					</c:if>
-					<%--  <c:if test="${index.count eq 6 }">
-             		   <div style="text-align: end;"><button type="button" onclick="goToFilterPage('${obj1.theme_code }')" class="btn btn-relief-danger">More</button></div>
-             		   </c:if> --%>
+             		
 					</c:forEach>
 		         </c:when>
-		         <c:otherwise>
-		             <p>
-		             <c:if test="${filesListss[index.count - 1] eq 'In Progress' }"><i class='fa-solid fa-circle teal-color fa-fade' style="--fa-animation-duration: 2s; --fa-fade-opacity: 0.6; font-size: 10px;" ></i></c:if> 
-             		 <c:if test="${filesListss[index.count - 1] eq 'Resolved' }"><i class='fa fa-circle green-color'  style="font-size: 10px;"></i></c:if> 
-             		 <c:if test="${filesListss[index.count - 1] eq 'Rejected' }"><i class='fa fa-circle red-color'  style="font-size: 10px;"></i></c:if> &nbsp;
-		              <a  href="javascript:void(0);" onclick="getIdea('${ obj1.idea_no}','${ obj1.theme_code}');" id="stdname" title="click to View ${obj1.title} "  class="list-group-item text-body">${obj1.title}
-		              <span style="display:none"> ${obj1.sbu} - ${obj1.sbu_name}</span>  </a>
-		              </a> </p>
-		         </c:otherwise>
+		        
 		      </c:choose>
           </div>
           

@@ -28,7 +28,7 @@ div.main-menu-content {
           
             <li class="dropdown nav-item "  data-menu id="bb"  url ="/bb-is">
 					    <a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath() %>/bb-is" data-bs-toggle=""
-					    data-i18n="Analytics"> <i data-feather="home"></i>
+					    data-i18n="Analytics"> <i class="fa-solid fa-lightbulb"></i>
 					      <span data-i18n="Dashboards">Ideas</span></a>
 			</li>
   
