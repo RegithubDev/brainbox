@@ -33,10 +33,12 @@ import com.google.gson.GsonBuilder;
 
 import com.resustainability.reisp.constants.PageConstants;
 import com.resustainability.reisp.model.BrainBox;
+import com.resustainability.reisp.model.Company;
 import com.resustainability.reisp.model.IRM;
 import com.resustainability.reisp.model.SBU;
 import com.resustainability.reisp.model.User;
 import com.resustainability.reisp.model.UserPaginationObject;
+import com.resustainability.reisp.service.BBBankService;
 import com.resustainability.reisp.service.BrainBoxService;
 import com.resustainability.reisp.service.UserService;
 
@@ -49,6 +51,8 @@ public class HomeController {
     }
 	Logger logger = Logger.getLogger(HomeController.class);
 	
+	@Autowired
+	BBBankService service3;
 	@Autowired
 	UserService service;
 
@@ -82,8 +86,8 @@ public class HomeController {
 		//	List<User> rewardsList = service.getRewardsHistory(user);
 			if(role.equals("Admin") || role.equals("Management")) {
 				
-				 model = new ModelAndView(PageConstants.bbForm);
-				 model.setViewName("redirect:/bb-is");
+				 model = new ModelAndView(PageConstants.bbdashboard);
+				 model.setViewName("redirect:/bb-dashboard");
 				// model.addObject("rewardsList", rewardsList);
 				// model.addObject("reward_points", userDetails.getReward_points());
 					/*
@@ -110,6 +114,20 @@ public class HomeController {
 			}
 			//List <User> deptList = service.getDeptList(user);
 			//model.addObject("deptList", deptList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	@RequestMapping(value = "/bb-dashboard", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView company(@ModelAttribute User user, HttpSession session) {
+		ModelAndView model = new ModelAndView(PageConstants.bbdashboard);
+		Company obj = null;
+		try {
+			List<BrainBox> themeList = service3.getThemeList();
+			model.addObject("themeList", themeList);
+			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

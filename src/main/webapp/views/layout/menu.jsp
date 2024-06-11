@@ -20,10 +20,16 @@ div.main-menu-content {
 <body>
 		<div class="navbar-container main-menu-content" data-menu="menu-container" id="menu">
           <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation" >
+             <li class="dropdown nav-item "  data-menu id="bbd"  url ="/bb-dashboard">
+					    <a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath() %>/bb-dashboard" data-bs-toggle=""
+					    data-i18n="Analytics"> <i data-feather="home"></i>
+					      <span data-i18n="Dashboards">Dasboard</span></a>
+			</li>
+          
             <li class="dropdown nav-item "  data-menu id="bb"  url ="/bb-is">
 					    <a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath() %>/bb-is" data-bs-toggle=""
 					    data-i18n="Analytics"> <i data-feather="home"></i>
-					      <span data-i18n="Dashboards">Dashboard</span></a>
+					      <span data-i18n="Dashboards">Ideas</span></a>
 			</li>
   
 	
@@ -52,12 +58,7 @@ div.main-menu-content {
             </ul>
            </li>
         </c:if>
-			
-	<%-- 	<li class="dropdown nav-item " data-menu id="home">
-			    <a class="dropdown-item d-flex align-items-center" href="<%=request.getContextPath() %>/bb-is" data-bs-toggle=""
-			     data-i18n="Analytics"><i data-feather='codesandbox'></i>
-			      <span data-i18n="Analytics">BrainBox </span></a>
-			</li>  --%>
+	
 				
           </ul>
         </div>
@@ -74,6 +75,8 @@ div.main-menu-content {
            			 $('#bank').addClass('active');
 	           		}else if(url.indexOf('/bb-is') != -1 || url.indexOf('/update-bb-form') != -1){
 	           			$('#bb').addClass('active');
+	           		}else if(url.indexOf('/bb-dashboard') != -1){
+	           			$('#bbd').addClass('active');
 	           		}else if(url.indexOf('/home') != -1){
 	           			$('#home').addClass('active');
 	           		}else if(url.indexOf('/help') != -1){
@@ -91,6 +94,8 @@ div.main-menu-content {
               			 $('#bank').addClass('active');
 	           		}else if(url.indexOf('/bb-is') != -1 || url.indexOf('/update-bb-form') != -1){
 	           			$('#bb').addClass('active');
+	           		}else if(url.indexOf('/bb-dashboard') != -1){
+	           			$('#bbd').addClass('active');
 	           		}else if(url.indexOf('/home') != -1){
 	           			$('#home').addClass('active');
 	           		}else if(url.indexOf('/help') != -1){

@@ -34,5 +34,6 @@ public class PageConstants {
 	public static final String bbSbuForm = "bbSbuForm";
 	public static final String bbbank = "ideabank";
 	public static final String helpCenter = "helpCenter";
+	public static final String bbdashboard = "bbdashboard";
 	
 }
