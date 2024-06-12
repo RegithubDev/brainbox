@@ -51,6 +51,31 @@
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/style.css">
     
     <style>
+    .card1 {
+            width: 300px;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        /* Styles for the hover state */
+        .card1:hover {
+            transform: scale(1.05); /* Slightly increase the size */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance the shadow */
+            background-color: #f0f0f0; /* Optional: change the background color */
+            cursor: pointer;
+            border-color: #007BFF; /* Change the border color */
+            color: #007BFF; /* Change the text color */
+        }
+
+        /* Additional styles for the class 'carshv' */
+        .card1.carshv {
+            border-color: #007BFF; /* Change the border color */
+            color: #007BFF; /* Change the text color */
+        }
     
     .teal-color {
         color:orange;
@@ -234,12 +259,12 @@
             </div>
           </form> 
         </div>
-  <div class="row kb-search-content-info match-height">
+ <%--  <div class="row kb-search-content-info match-height">
   
    <c:forEach var="obj1" items="${themeList}">
    
     <div class="col-md-4 col-sm-6 col-12 kb-search-content">
-      <div class="card">
+      <div class="card1">
       
            <div class="card-body">
           <!-- account setting header -->
@@ -286,7 +311,57 @@
 	    </div>
     </c:if>
    
-  </div> 
+  </div>  --%>
+  
+  <div class="row kb-search-content-info match-height">
+    <c:forEach var="obj1" items="${themeList}">
+        <div class="col-md-3 col-sm-6 col-12 kb-search-content"> <!-- Modified column classes -->
+            <div class="card1">
+                <div class="card-body">
+                    <!-- account setting header -->
+                    <h6 class="kb-title">
+                        <span><b>[${obj1.theme_code }] - ${obj1.theme_name } (${ obj1.counts})</b></span>
+                        <input class="tCodes" type="hidden" value="${obj1.theme_code}  ${obj1.theme_name }" />
+                    </h6>
+                    <div class="list-group list-group-circle mt-2 stdtable">
+                        <c:choose>
+                            <c:when test="${  fn:contains( obj1.title, ',' ) }">
+                                <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
+                                <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
+                                <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
+                                <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
+                                <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
+                                <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
+                                <!-- Iterate over the items -->
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <!-- Handle other cases if needed -->
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+                <div style="text-align: end;position: relative;top: -1rem;left: -2rem;">
+                    <button type="button" onclick="goToFilterPage('${obj1.theme_code }')"
+                            class="btn btn-relief-danger" title="view in Detail">More..
+                    </button>
+                </div>
+            </div>
+        </div>
+    </c:forEach>
+    <!-- no result -->
+    <c:if test="${empty themeList }">
+        <div class="col-12 text-center ">
+            <h4 class="mt-4">No Ideas found!!</h4>
+        </div>
+    </c:if>
+    <c:if test="${not empty themeList }">
+        <div class="col-12 text-center no-result no-items">
+            <h4 class="mt-4">Search result not found!!</h4>
+        </div>
+    </c:if>
+</div>
+  
 </section>
 <!-- Knowledge base ends -->
 
