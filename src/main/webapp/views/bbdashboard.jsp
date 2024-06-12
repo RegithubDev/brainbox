@@ -154,7 +154,7 @@
           <img src="/brainbox/resources/images/elements/decore-right.png" class="congratulations-img-right" alt="card-img-right">
           
           <div class="text-center" style="position: relative; z-index: 1;">
-            <h1 class="mb-1 text-white">Welcome 🎉</h1> <h4 class="mb-1 text-white"><b>${sessionScope.USER_NAME }!</b></h4>
+            <h1 class="mb-1 text-white">Welcome Back 🎉</h1> <h4 class="mb-1 text-white"><b><u>${sessionScope.USER_NAME }!</u></b></h4>
             
           </div>
         </div>
