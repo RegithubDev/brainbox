@@ -71,7 +71,7 @@ public class RestBrainBoxController {
 	@Value("${common.error.message}")
 	public String commonError;
 	
-	@Value("${record.dataexport.success}")
+	@Value("${record.dataexport.success}") 
 	public String dataExportSucess;
 	
 	@Value("${record.dataexport.invalid.directory}")

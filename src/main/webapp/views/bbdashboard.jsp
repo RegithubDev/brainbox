@@ -13,7 +13,6 @@
     <meta name="author" content="PIXINVENT">
   <title>BB- Dashboard </title>
         <link rel="icon" type="image/png" sizes="96x96" href="/brainbox/resources/images/protect-favicon.png" >
-
 	<script src="/brainbox/resources/js/jQuery-v.3.5.min.js"  ></script>
     <!-- BEGIN: Vendor CSS-->
       <link rel="apple-touch-icon" href="/brainbox/resources/images/ico/apple-icon-120.html">
