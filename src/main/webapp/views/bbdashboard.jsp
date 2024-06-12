@@ -322,68 +322,11 @@ tr td:last-child {
             <div class="input-group input-group-merge" style="width: 77%;">
               <span class="input-group-text"><i data-feather="search"></i></span>
               <input type="text" class="form-control" id="searchbar" list="browsers" placeholder="Search Here" />
-             <%--   <datalist id="browsers">
-				         <c:forEach var="obj" items="${sbuList}">
-				          <option value="${obj.sbu_code }">${obj.sbu_name }</option>
-						  </c:forEach>
-				        </datalist> --%>
+    
             </div>
           </form> 
         </div>
- <%--  <div class="row kb-search-content-info match-height">
-  
-   <c:forEach var="obj1" items="${themeList}">
-   
-    <div class="col-md-4 col-sm-6 col-12 kb-search-content">
-      <div class="card1">
-      
-           <div class="card-body">
-          <!-- account setting header -->
-          <h6 class="kb-title">
-            <span><b>[${obj1.theme_code }] - ${obj1.theme_name } (${ obj1.counts})</b></span>
-            <input class="tCodes" type="hidden" value="${obj1.theme_code}  ${obj1.theme_name }" />
-          </h6>
-          <div class="list-group list-group-circle mt-2 stdtable">
-           <c:choose>
-		         <c:when test="${  fn:contains( obj1.title, ',' ) }">
-		            <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
-             		  <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
-             		   <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
-             		    <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
-             		     <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
-             		 <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
-             		 
-             		
-					</c:forEach>
-		         </c:when>
-		         <c:otherwise>
-		           
-		         </c:otherwise>
-		      </c:choose>
-          </div>
-          
-        </div>
-             <div style="text-align: end;position: relative;top: -1rem;left: -2rem;"><button type="button" onclick="goToFilterPage('${obj1.theme_code }')"
-              class="btn btn-relief-danger" title="view in Detail">More..</button></div>
-        
-        </a>
-      </div>
-    </div>
-   </c:forEach>
-    <!-- no result -->
-    <c:if test="${empty themeList }">
-    <div class="col-12 text-center ">
-      <h4 class="mt-4">No Ideas found!!</h4>
-    </div>
-    </c:if>
-    <c:if test="${not empty themeList }">
-	     <div class="col-12 text-center no-result no-items">
-	      <h4 class="mt-4">Search result not found!!</h4>
-	    </div>
-    </c:if>
-   
-  </div>  --%>
-  
+
   <div class="row kb-search-content-info match-height">
     <c:forEach var="obj1" items="${themeList}">
         <div class="col-md-3 col-sm-6 col-12 kb-search-content"> <!-- Modified column classes -->
@@ -430,13 +373,7 @@ tr td:last-child {
           <h1 class="mb-1 alert alert-danger">Submit Your Idea <i class="fa-solid fa-lightbulb"></i></h1>
         </div>
         <form id="addIdeaForm" class="row gy-1 pt-75" action="<%=request.getContextPath() %>/add-idea" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
-        	<!--  <div class="alert " role="alert">
-              <div class="alert-body fw-normal">
-              <div class="pull-left">
-                   <h6 ><span id="incidentValue">Reviewer : </span><span id="approverForIncident" style="color: orange;">No Reviewer Assigned</span> </h6>
-              </div>
-              </div>
-            </div> -->
+    
              <input type="hidden" id="project_code" name="project_code" value="${sessionScope.BASE_PROJECT_CODE }"/>
              <input type="hidden" id="department_code" name="department_code" value="${sessionScope.BASE_DEPARTMENT }"/>
              <input type="hidden" id="sbu_code" name="sbu_code" value="${sessionScope.BASE_SBU }"/>
@@ -488,60 +425,15 @@ tr td:last-child {
               class="select2 form-select formSelect"
               aria-label="Default select example" onchange="roleMapping('Evaluator');"
             >
-              <option value="">Select Idea Theme</option>
+              <option value="">Select Idea Theme ${obj1.theme_code }</option>
              <c:forEach var="obj" items="${themeList}">
-					<option value="${obj.theme_code }" >[${obj.theme_code }] - ${obj.theme_name }</option>
+					<option value="${obj.theme_code }" <c:if test="${obj.theme_code eq obj1.theme_code }">selected</c:if>>[${obj.theme_code }] - ${obj.theme_name }</option>
 				</c:forEach>
             </select>
              <span id="select2-theme_add-containerError" class="error-msg" ></span>
           </div>
           
-         <%--  <div class="col-12 col-md-6">
-            <label class="form-label" for="select2-basic">SBU</label><span class="required"> *</span>
-            <select 
-              id="select2-sbu_code_add-container"
-              name="sbu_code"
-              class="select2 form-select formSelect" disabled
-              aria-label="Default select example" 
-            >
-              <option value="">Select SBU</option>
-             	<c:forEach var="obj" items="${sbuList}">
-					<option value="${obj.sbu_code }" <c:if test="${sessionScope.BASE_SBU eq obj.sbu_code }"> selected</c:if> >[${obj.sbu_code }] - ${obj.sbu_name }</option>
-				</c:forEach>
-            </select>
-            <span id="select2-sbu_code_add-containerError" class="error-msg" ></span>
-          </div> --%>
-		<%-- <div class="col-12 col-md-6">
-            <label class="form-label" for="select2-basic">Project</label><span class="required"> *</span>
-            <select 
-              id="select2-project_add-container"
-             
-              class="select2 form-select formSelect"
-              aria-label="Default select example" disabled
-            >
-              <option value="">Select Project</option>
-             	<c:forEach var="obj" items="${projectsList}">
-					<option value="${obj.project_code }" <c:if test="${sessionScope.BASE_PROJECT_CODE eq obj.project_code }"> selected</c:if> >[${obj.project_code }] - ${obj.project_name }</option>
-				</c:forEach>
-            </select>
-             <span id="select2-project_add-containerError" class="error-msg" ></span>
-          </div> --%>
-          <%-- <div class="col-12 col-md-6">
-            <label class="form-label" for="select2-basic">Department</label><span class="required"> *</span>
-            <select 
-              id="select2-department_code_add-container"
-              
-              class="select2 form-select formSelect"
-              aria-label="Default select example" disabled
-            >
-              <option value="">Select Department</option>
-             	<c:forEach var="obj" items="${deptsList}">
-					<option value="${obj.department_code }" <c:if test="${sessionScope.BASE_DEPARTMENT eq obj.department_code }"> selected</c:if> >[${obj.department_code }] - ${obj.department_name }</option>
-				</c:forEach>
-            </select>
-             <span id="select2-department_code_add-containerError" class="error-msg" ></span>
-          </div> --%>
-            
+        
               <div class="col-12 col-md-12" > 
               <label class="form-label" for="select2-basic">Upload Files (optional)</label>
                <div class="mb-1">
@@ -580,15 +472,6 @@ tr td:last-child {
 		              <label class="form-check-label badge badge-light-dark" id="lableDark" for="customSwitch2">Submit Idea Anonymously</label>
 		            </div>
 		          </div>
-          <!-- 
-          
-                <div class=" mb-1 form-check form-switch form-check-secondary" id="switch_case"><label class="form-label badge badge-light-dark" for="select2-basic">Submit Idea as Anonymous <i class="fa fa-user-secret" aria-hidden="true"></i></label>
-                <input type="checkbox" class="form-check-input" id="customSwitch11" value="false">
-                <label class="form-check-label" for="customSwitch11">
-                  <span class="switch-icon-left"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                  <span class="switch-icon-right"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>
-                </label>
-              </div> -->
               </div>
           <div class="col-12 text-center mt-2 pt-50">
             <button type="button" class="btn btn-primary me-1" onclick="addIdea();">Submit</button>
@@ -711,6 +594,43 @@ tr td:last-child {
             });
         }); 
     });
+        
+        function roleMapping(role){
+	    	//$("#approverForIncident").html('No Reviewer Assigned').css("color", "orange");
+	    
+	        if ($.trim(role) != "") {
+	        	var myParams = { role_code: role};
+	            $.ajax({
+	                url: "<%=request.getContextPath()%>/ajax/getRoleMappingforBBForm",
+	                data: myParams, cache: false,async: false,
+	                success: function (data) {
+	                    if (data.length > 0) {
+	                        $.each(data, function (i, val) {
+	                        	if($.trim(val.user_name) != ''){
+	                        		//$("#approverForIncident").html(val.user_name).css("color", "#05f305").append('&nbsp; <i class="fa fa-check" aria-hidden="true"></i>');
+	                        		$("#approver_code").val(val.user_id);
+	                        		$("#approver_type").val(val.role_code);
+	                        		$("#email_id").val(val.email_id);
+	                        		$("#approver_name").val(val.user_name);
+	                        	}else{
+	                        		 $("#approver_code").val(null);
+	                        		 $("#approver_type").val("No Reviewer Assigned");
+	                        		// $("#approverForIncident").html('No Reviewer Found').css("color", "red");
+	                        	}
+	                        });
+	                    }else{
+	                    	 // $("#approverForIncident").html('No Reviewer Found').css("color", "red");
+	                    	  $("#approver_code").val(null);
+                      		  $("#approver_type").val(null);
+	                    }
+	                },error: function (jqXHR, exception) {
+	    	   			      $(".page-loader").hide();
+	       	          	  getErrorMessage(jqXHR, exception);
+	       	     	  }
+	            });
+	        }
+	    	
+	    }
         var validator =	$('#addIdeaForm').validate({
 		   	 errorClass: "my-error-class",
 		   	 validClass: "my-valid-class",

@@ -87,6 +87,8 @@ public class HomeController {
 			if(role.equals("Admin") || role.equals("Management")) {
 				
 				 model = new ModelAndView(PageConstants.bbdashboard);
+				 List<BrainBox> themeList = service3.getThemeList();
+				 model.addObject("themeList", themeList);
 				 model.setViewName("redirect:/bb-dashboard");
 				// model.addObject("rewardsList", rewardsList);
 				// model.addObject("reward_points", userDetails.getReward_points());
