@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 
 <html class="loading" lang="en" data-textdirection="ltr">
-
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +14,6 @@
   <title>BB- Dashboard </title>
         <link rel="icon" type="image/png" sizes="96x96" href="/brainbox/resources/images/protect-favicon.png" >
 
-
 	<script src="/brainbox/resources/js/jQuery-v.3.5.min.js"  ></script>
     <!-- BEGIN: Vendor CSS-->
       <link rel="apple-touch-icon" href="/brainbox/resources/images/ico/apple-icon-120.html">
@@ -25,8 +22,6 @@
             <link rel="stylesheet" type="text/css" href="/brainbox/resources/vendors/css/extensions/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/plugins/extensions/ext-component-toastr.min.css">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/extensions/sweetalert2.min.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/plugins/extensions/ext-component-sweet-alerts.min.css"/>">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/vendors/css/tables/datatable/buttons.bootstrap5.min.css">
@@ -49,104 +44,13 @@
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/core/menu/menu-types/horizontal-menu.min.css">
         <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/plugins/forms/pickers/form-flat-pickr.min.css">
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/plugins/forms/pickers/form-pickadate.min.css">
+     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/pages/page-knowledge-base.min.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/style.css">
     
     <style>
-    @media (min-width: 1200px){
-	.modal-xl {
-	    margin-left: 10%!important;;
-	    margin-right: 3%!important;;
-	     max-width: 80%!important;;
-	}
-}
-
-.mdl-grid{
-	display: flex !important;
-    padding: 4px;
-    justify-content: space-between;
-    height: 4.5rem;
-} 
-.form-switch .form-check-input:not(:checked) {
-    background-color: #11db00 !important;
-}
-.dt-table{
-display: block !important;
-height: 100%;
-}
-.modal {
-    width: 100% !important;
-}
-.required{
-	color:red;
-}
-.my-error-class {
- 	 color:red;
-}
-.my-valid-class {
- 	 color:green;
-}
-.select2-container--default .select2-selection--single .select2-selection__arrow b {
-     left: -25% !important;
-    margin-top: 1p% !important;
-}
-body {
-    font-family: var(--bs-body-font-family) !important;
-}
-.dark-layout h1, .dark-layout h2, .dark-layout h3, .dark-layout h4, .dark-layout h5, .dark-layout h6, .dark-layout span  {
-    color: #D0D2D6;
-}
-.select2-container--classic .select2-selection--single .select2-selection__arrow b, .select2-container--default .select2-selection--single .select2-selection__arrow b {
-    background-image: url(data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23d8d6de\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'feather feather-chevron-down\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E);
-    background-size: 18px 14px,18px 14px !important;
-    background-repeat: no-repeat !important;
-    height: 1rem !important;
-    padding-right: 1.5rem !important;
-    margin-left: 0 !important;
-    margin-top: 0 !important;
-    left: -8px !important;
-    border-style: none !important;
-}
-td {
-    border: 1px solid #000;
-}
-
-tr td:last-child {
-    width: 1%;
-    white-space: nowrap;
-}
-.dataTables_scrollHeadInner{
-    box-sizing: content-box;
-    width: auto !important;
-    padding-right: 0px;
-}
-    .card1 {
-            width: 300px;
-            padding: 20px;
-            margin: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, color 0.3s;
-        }
-
-        /* Styles for the hover state */
-        .card1:hover {
-            transform: scale(1.05); /* Slightly increase the size */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance the shadow */
-            background-color: #f0f0f0; /* Optional: change the background color */
-            cursor: pointer;
-            border-color: #007BFF; /* Change the border color */
-            color: #007BFF; /* Change the text color */
-        }
-
-        /* Additional styles for the class 'carshv' */
-        .card1.carshv {
-            border-color: #007BFF; /* Change the border color */
-            color: #007BFF; /* Change the text color */
-        }
     
     .teal-color {
         color:orange;
@@ -223,7 +127,7 @@ tr td:last-child {
           <img src="/brainbox/resources/images/elements/decore-right.png" class="congratulations-img-right" alt="card-img-right">
           
           <div class="text-center" style="position: relative; z-index: 1;">
-            <h1 class="mb-1 text-white">Welcome Back 🎉</h1> <h4 class="mb-1 text-white"><b><u>${sessionScope.USER_NAME }!</u></b></h4>
+            <h1 class="mb-1 text-white">Welcome 🎉</h1> <h4 class="mb-1 text-white"><b>${sessionScope.USER_NAME }!</b></h4>
             
           </div>
         </div>
@@ -319,185 +223,70 @@ tr td:last-child {
                <input type="text" class="form-control"  placeholder="Search SBU" />
                
             </div> -->
-            <div class="input-group input-group-merge" style="width: 77%;">
+            <div class="input-group input-group-merge" style="width: 50%;">
               <span class="input-group-text"><i data-feather="search"></i></span>
               <input type="text" class="form-control" id="searchbar" list="browsers" placeholder="Search Here" />
-    
+             <%--   <datalist id="browsers">
+				         <c:forEach var="obj" items="${sbuList}">
+				          <option value="${obj.sbu_code }">${obj.sbu_name }</option>
+						  </c:forEach>
+				        </datalist> --%>
             </div>
           </form> 
         </div>
-
   <div class="row kb-search-content-info match-height">
-    <c:forEach var="obj1" items="${themeList}">
-        <div class="col-md-3 col-sm-6 col-12 kb-search-content"> <!-- Modified column classes -->
-            <div class="card1">
-                <div class="card-body">
-                    <!-- account setting header -->
-                    <h6 class="kb-title">
-                        <span><b>[${obj1.theme_code }] - ${obj1.theme_name } (${ obj1.counts})</b></span>
-                        <input class="tCodes" type="hidden" value="${obj1.theme_code}  ${obj1.theme_name }" />
-                    </h6>
-                    <div class="list-group list-group-circle mt-2 stdtable">
-                        <c:choose>
-                            <c:when test="${  fn:contains( obj1.title, ',' ) }">
-                                <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
-                                <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
-                                <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
-                                <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
-                                <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
-                                <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
-                                <!-- Iterate over the items -->
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <!-- Handle other cases if needed -->
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                </div>
-                <div style="text-align: end;position: relative;top: -1rem;left: -2rem;">
-                    <button type="button" class="btn " onclick="addBox();" data-bs-toggle="modal" data-bs-target="#addIdea${index.count }" 
-                    style="margin-top: 17px; color: white !important; background-color: orange !important;"><i class="fa fa-add" aria-hidden="true"></i>Add
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="addIdea${index.count }" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
-    <div class="modal-content" id="bgimage">
-      <div class="modal-header bg-transparent">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body pb-5 px-sm-5 pt-50">
-        <div class="text-center">
-          <h1 class="mb-1 alert alert-danger">Submit Your Idea <i class="fa-solid fa-lightbulb"></i></h1>
-        </div>
-        <form id="addIdeaForm" class="row gy-1 pt-75" action="<%=request.getContextPath() %>/add-idea" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
-    
-             <input type="hidden" id="project_code" name="project_code" value="${sessionScope.BASE_PROJECT_CODE }"/>
-             <input type="hidden" id="department_code" name="department_code" value="${sessionScope.BASE_DEPARTMENT }"/>
-             <input type="hidden" id="sbu_code" name="sbu_code" value="${sessionScope.BASE_SBU }"/>
-             <input type="hidden" id="approver_code" name="approver_code" />
-           <input type="hidden" id="approver_type" name="approver_type" /> 
-            <input type="hidden" id="email_id" name="email_id" />
-             <input type="hidden" id="approver_name" name="approver_name" />
-             <input type="hidden" id="incident_name" name="incident_name" />
-        <div class="col-12 col-md-12">
-            <label class="form-label" for="modalEditUserFirstName"> Idea in Short</label><span class="required"> *</span>
-            <input
-              type="text"
-              id="title_add"
-              name="title"
-              class="form-control"
-              placeholder="Idea in Short"
-              value=""
-              data-msg="Please enter your first name"
-            />
-             <span id="title_addError" class="error-msg" ></span>
-          </div> 
-          	<div class="col-12 col-md-12">
-            <label class="form-label" for="select2-basic">Idea in Detail</label>
-    		 <div class="row">
-		    <div class="col-12">
-		          <div class="row">
-		            <div class="col-12">
-		              <div class="mb-1">
-		                <textarea
-		                  class="form-control"
-		                  id="description_add"
-		                  name="description"
-		                  rows="3"
-		                  placeholder="Idea Description"
-		                ></textarea>
-		              </div>
-		            </div>
-		   
-		      </div>
-		    </div>
-		  </div>
-             <span id="description_addError" class="error-msg" ></span>
-          </div>
-          	<div class="col-12 col-md-12">
-            <label class="form-label" for="select2-basic">Select Idea Theme</label><span class="required"> *</span>
-    		   <select 
-              id="select2-theme_add-container"
-              name="theme"
-              class="select2 form-select formSelect"
-              aria-label="Default select example" onchange="roleMapping('Evaluator');"
-            >
-              <option value="">Select Idea Theme ${obj1.theme_code }</option>
-             <c:forEach var="obj" items="${themeList}">
-					<option value="${obj.theme_code }" <c:if test="${obj.theme_code eq obj1.theme_code }">selected</c:if>>[${obj.theme_code }] - ${obj.theme_name }</option>
-				</c:forEach>
-            </select>
-             <span id="select2-theme_add-containerError" class="error-msg" ></span>
+  
+   <c:forEach var="obj1" items="${themeList}">
+   
+    <div class="col-md-4 col-sm-6 col-12 kb-search-content">
+      <div class="card">
+      
+           <div class="card-body">
+          <!-- account setting header -->
+          <h6 class="kb-title">
+            <span><b>[${obj1.theme_code }] - ${obj1.theme_name } (${ obj1.counts})</b></span>
+            <input class="tCodes" type="hidden" value="${obj1.theme_code}  ${obj1.theme_name }" />
+          </h6>
+          <div class="list-group list-group-circle mt-2 stdtable">
+           <c:choose>
+		         <c:when test="${  fn:contains( obj1.title, ',' ) }">
+		            <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
+             		  <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
+             		   <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
+             		    <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
+             		     <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
+             		 <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
+             		 
+             		
+					</c:forEach>
+		         </c:when>
+		         <c:otherwise>
+		           
+		         </c:otherwise>
+		      </c:choose>
           </div>
           
+        </div>
+             <div style="text-align: end;position: relative;top: -1rem;left: -2rem;"><button type="button" onclick="goToFilterPage('${obj1.theme_code }')"
+              class="btn btn-relief-danger" title="view in Detail">More..</button></div>
         
-              <div class="col-12 col-md-12" > 
-              <label class="form-label" for="select2-basic">Upload Files (optional)</label>
-               <div class="mb-1">
-                <div class="control-group" id="fields">
-	                     
-	                           <div class="controls">
-	                               <div class="entry input-group upload-input-group">
-	                                   <input class="form-control" id="files${index.count }" name="mediaList" type="file" placeholder="choose relevent file">
-	                                   <button class="btn btn-upload btn-success btn-add" type="button">
-	                                       <i class="fa fa-plus"></i>
-	                                   </button>
-	                               </div>
-	                           </div>
-	                       </div>  
-	                </div>
-              </div>
-               <div class="col-12 col-md-12" > 
-               
-               <div class="demo-inline-spacing">
-               <div class="mb-1 form-check form-switch form-check-secondary">
-		              <label class="form-check-label btn-flat-success " for="customSwitch1"></label>
-		            </div>
-		            <div class="mb-1 form-check form-switch form-check-secondary">
-		              <label class="form-check-label btn-flat-success " for="customSwitch1"></label>
-		            </div>
-		            
-		            <div class="mb-1 form-check form-switch form-check-secondary">
-		              <label class="form-check-label badge bg-success " id="lableSuccess" for="customSwitch1">Public</label>
-		            </div>
-		            <div class="mb-1 form-check form-switch form-check-secondary">
-		              <input type="checkbox" class="form-check-input" name="is_anonymous"  id="customSwitch11">
-		              <label class="form-check-label" for="customSwitch11">
-                  <span class="switch-icon-left"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
-                  <span class="switch-icon-right"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>
-                </label>
-		              <label class="form-check-label badge badge-light-dark" id="lableDark" for="customSwitch2">Submit Idea Anonymously</label>
-		            </div>
-		          </div>
-              </div>
-          <div class="col-12 text-center mt-2 pt-50">
-            <button type="button" class="btn btn-primary me-1" onclick="addIdea();">Submit</button>
-            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-              Discard
-            </button>
-          </div>
-        </form>
+        </a>
       </div>
     </div>
-  </div>
-</div>
-    </c:forEach>
+   </c:forEach>
     <!-- no result -->
     <c:if test="${empty themeList }">
-        <div class="col-12 text-center ">
-            <h4 class="mt-4">No Ideas found!!</h4>
-        </div>
+    <div class="col-12 text-center ">
+      <h4 class="mt-4">No Ideas found!!</h4>
+    </div>
     </c:if>
     <c:if test="${not empty themeList }">
-        <div class="col-12 text-center no-result no-items">
-            <h4 class="mt-4">Search result not found!!</h4>
-        </div>
+	     <div class="col-12 text-center no-result no-items">
+	      <h4 class="mt-4">Search result not found!!</h4>
+	    </div>
     </c:if>
-</div>
-  
+   
+  </div> 
 </section>
 <!-- Knowledge base ends -->
 
@@ -522,10 +311,6 @@ tr td:last-child {
         <input type="hidden" name=idea_no id="document_codeUpdate" />
          <input type="hidden" name=theme id="theme1" />
 	</form>
-    <!-- BEGIN: Page Vendor JS-->
-   <script src="/brainbox/resources/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-
     <!-- BEGIN: Page Vendor JS-->
     <script src="/brainbox/resources/vendors/js/ui/jquery.sticky.js"></script>
     <script src="/brainbox/resources/vendors/js/forms/select/select2.full.min.js"></script>
@@ -567,6 +352,7 @@ tr td:last-child {
     <script src="/brainbox/resources/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="/brainbox/resources/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
      <script src="/brainbox/resources/js/scripts/forms/pickers/form-pickers.min.js"></script>
+ <script src="/brainbox/resources/js/scripts/pages/page-knowledge-base.min.js"></script>
  
    <form action="<%=request.getContextPath()%>/bb-sbu" name="getIRM" id="getIRM" method="post">	
       
@@ -580,104 +366,6 @@ tr td:last-child {
           feather.replace({ width: 14, height: 14 });
         }
       })
-          function addIdea(){
-	    	if(validator.form()){ // validation perform
-	    		 $('.formSelect').prop("disabled", false);
-	    		 $('#addIdea').modal('hide');
-	        	document.getElementById("addIdeaForm").submit();	
-	    	}
-	    }
-        $('#addIdea').on('show.bs.modal', function (event) {
-        $(document).ready(function() {
-            $('.select2').select2({
-                dropdownParent: $('#addIdea')
-            });
-        }); 
-    });
-        
-        function roleMapping(role){
-	    	//$("#approverForIncident").html('No Reviewer Assigned').css("color", "orange");
-	    
-	        if ($.trim(role) != "") {
-	        	var myParams = { role_code: role};
-	            $.ajax({
-	                url: "<%=request.getContextPath()%>/ajax/getRoleMappingforBBForm",
-	                data: myParams, cache: false,async: false,
-	                success: function (data) {
-	                    if (data.length > 0) {
-	                        $.each(data, function (i, val) {
-	                        	if($.trim(val.user_name) != ''){
-	                        		//$("#approverForIncident").html(val.user_name).css("color", "#05f305").append('&nbsp; <i class="fa fa-check" aria-hidden="true"></i>');
-	                        		$("#approver_code").val(val.user_id);
-	                        		$("#approver_type").val(val.role_code);
-	                        		$("#email_id").val(val.email_id);
-	                        		$("#approver_name").val(val.user_name);
-	                        	}else{
-	                        		 $("#approver_code").val(null);
-	                        		 $("#approver_type").val("No Reviewer Assigned");
-	                        		// $("#approverForIncident").html('No Reviewer Found').css("color", "red");
-	                        	}
-	                        });
-	                    }else{
-	                    	 // $("#approverForIncident").html('No Reviewer Found').css("color", "red");
-	                    	  $("#approver_code").val(null);
-                      		  $("#approver_type").val(null);
-	                    }
-	                },error: function (jqXHR, exception) {
-	    	   			      $(".page-loader").hide();
-	       	          	  getErrorMessage(jqXHR, exception);
-	       	     	  }
-	            });
-	        }
-	    	
-	    }
-        var validator =	$('#addIdeaForm').validate({
-		   	 errorClass: "my-error-class",
-		   	 validClass: "my-valid-class",
-		   	 ignore: ":hidden:not(.select2 form-select)",
-		   		    rules: {
-		   		 		  "title": {
-		   			 			required: true
-		   			 	  },"theme": {										 
-		   			 			required: true
-		   			 	  },"description": {
-		   	                 	required: false,
-		   			 	  }
-		   		 	},
-		   		    messages: {
-		   		 		 "title": {
-		   				 	required: 'Required',
-		   			 	  },"theme": {
-		   			 		required: 'Required'
-		   			 	  },"description": {
-		   		 			required: 'Required'
-		   		 	  	  }
-		      		},
-		      		errorPlacement:function(error, element){
-		      		 	if (element.attr("id") == "title_add" ){
-		   				 document.getElementById("title_addError").innerHTML="";
-		   		 		 error.appendTo('#title_addError');
-		   			}else if(element.attr("id") == "select2-theme_add-container" ){
-		   			   document.getElementById("select2-theme_add-containerError").innerHTML="";
-		   		 	   error.appendTo('#select2-theme_add-containerError');
-		   			}else if(element.attr("id") == "description_add" ){
-		   				document.getElementById("description_addError").innerHTML="";
-		   			 	error.appendTo('#description_addError');
-		   			}else{
-		   					error.insertAfter(element);
-		   	        } 
-		      		},invalidHandler: function (form, validator) {
-		               var errors = validator.numberOfInvalids();
-		               if (errors) {
-		                   var position = validator.errorList[0].element;
-		                   jQuery('html, body').animate({
-		                       scrollTop:jQuery(validator.errorList[0].element).offset().top - 100
-		                   }, 1000);
-		               }
-		           },submitHandler:function(form){
-		   	    	//form.submit();
-		   	    }
-		   	});
       function getIdea(idea_no,theme){
 	    	
 	    	$('#document_codeUpdate').val($.trim(idea_no));
@@ -685,11 +373,7 @@ tr td:last-child {
 	    	$("#updateIRM ").submit();
 	    	
       }
-  	function addBox(){
-   		$('select[name^="theme"] option:selected').removeAttr("selected");
-   		$('form-select').select2();
-   	}
-	
+      
       function goToFilterPage(theme){
     	  $('#theme').val($.trim(theme));
 	    	 $("#getIRM ").submit();
