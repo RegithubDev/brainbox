@@ -49,7 +49,52 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/style.css">
     
-    <style>
+    <style>.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 80%);
+    transform: translate(-25%, -25%) rotate(45deg);
+    animation: shine 2s linear infinite; /* Continuous animation */
+  }
+
+  @keyframes shine {
+    from {
+      top: -10%;
+      left: -10%;
+    }
+    to {
+      top: 110%;
+      left: 110%;
+    }
+  }
+
+  .button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .button:active {
+    background-color: #3e8e41; /* Even darker green when clicked */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
      .button-container {
     display: flex;
     justify-content: space-between;
@@ -292,7 +337,7 @@
     <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
       
        <div style="text-align: end; position: relative; top: -1rem; left: 4rem;">
-    <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-danger" title="View in Detail">Submit Idea</button>
+    <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-primary" title="View in Detail">Submit Idea</button>
 </div>
     
 </h6>
