@@ -311,7 +311,7 @@
             </button>
             <button type="button" class="btn btn-outline-success">
               <div class="count">${obj1.resolved_count}</div>
-              <div class="label">Resolved</div>
+              <div class="label">Approved</div>
             </button>
             <button type="button" class="btn btn-outline-danger">
               <div class="count">${obj1.rejected_count}</div>
