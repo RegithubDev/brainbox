@@ -268,7 +268,7 @@
                <input type="text" class="form-control"  placeholder="Search SBU" />
                
             </div> -->
-            <div class="input-group input-group-merge" style="width: 50%;">
+            <div class="input-group input-group-merge" style="width: 70%;">
               <span class="input-group-text"><i data-feather="search"></i></span>
               <input type="text" class="form-control" id="searchbar" list="browsers" placeholder="Search Here" />
              <%--   <datalist id="browsers">
