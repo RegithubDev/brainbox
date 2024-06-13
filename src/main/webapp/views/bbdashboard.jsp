@@ -286,20 +286,15 @@
       <div class="card">
         <div class="card-body">
           <!-- account setting header -->
-   <%--    <h6 class="kb-title">
-    <span><b>[${obj1.theme_code}] - ${obj1.theme_name} (<span class="badge badge-light-dark">${obj1.counts}</span>)</b></span>
-    <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
-</h6>
- --%>
-<%--  <h6 class="kb-title">
-    <span><b>[${obj1.theme_code}] - ${obj1.theme_name} (<span class="badge badge-dark">${obj1.counts}</span>)</b></span>
-    <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
-</h6>
  
- --%>
  <h6 class="kb-title">
     <span><b>[${obj1.theme_code}] - ${obj1.theme_name} <span class="badge bg-dark text-light">${obj1.counts}</span></b></span>
     <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
+      
+       <div style="text-align: end; position: relative; top: -1rem; left: 4rem;">
+    <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-danger" title="View in Detail">Submit Idea</button>
+</div>
+    
 </h6>
  
           
@@ -337,11 +332,11 @@
             </c:choose>
           </div>
         </div>
-        
-       <div style="text-align: end; position: relative; top: -1rem; left: -2rem;">
+      <%--   
+       <div style="text-align: end; position: relative; top: -1rem; left: rem;">
     <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-danger" title="View in Detail">Submit Idea</button>
 </div>
-
+ --%>
       </div>
     </div>
   </c:forEach>
