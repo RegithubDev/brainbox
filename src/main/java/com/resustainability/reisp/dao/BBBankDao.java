@@ -27,16 +27,36 @@ public class BBBankDao {
 	DataSourceTransactionManager transactionManager;
 
 	public List<BrainBox> getThemeList() {
-		List<BrainBox> objsList = new ArrayList<BrainBox>();
-		String qry = "SELECT count(theme_code) as counts,theme_code,theme_name,STRING_AGG(title,',') as title,STRING_AGG(idea_no,',') as idea_no,STRING_AGG(b.status,',') as status"
-				+ ",STRING_AGG(b.sbu,',') as sbu,STRING_AGG(s.sbu_name,',') as sbu_name "
-				+ "  FROM [bb_theme] t "
-				+ "Left join bb_is b on b.theme = t.theme_code "
-				+ "Left join sbu s on b.sbu = s.sbu_code "
-				+ " where theme_code is not null and theme_code <> '' and t.status = 'Active'  and idea_no is not null  group by theme_code,theme_name"; 
-		objsList = jdbcTemplate.query( qry, new BeanPropertyRowMapper<BrainBox>(BrainBox.class));
-		return objsList;
-	}
+        List<BrainBox> objsList = new ArrayList<BrainBox>();
+        String qry = "SELECT  "
+                + "    theme_code, "
+                + "    theme_name, "
+                + "    count(theme_code) as counts, "
+                + "    STRING_AGG(title, ',') as title, "
+                + "    STRING_AGG(idea_no, ',') as idea_no, "
+                + "    STRING_AGG(b.status, ',') as status, "
+                + "    STRING_AGG(b.sbu, ',') as sbu, "
+                + "    STRING_AGG(s.sbu_name, ',') as sbu_name, "
+                + "    SUM(CASE WHEN b.status = 'In Progress' THEN 1 ELSE 0 END) as in_progress_count, "
+                + "    SUM(CASE WHEN b.status = 'Resolved' THEN 1 ELSE 0 END) as resolved_count, "
+                + "    SUM(CASE WHEN b.status = 'Rejected' THEN 1 ELSE 0 END) as rejected_count "
+                + "FROM  "
+                + "    [bb_theme] t "
+                + "LEFT JOIN  "
+                + "    bb_is b ON b.theme = t.theme_code "
+                + "LEFT JOIN  "
+                + "    sbu s ON b.sbu = s.sbu_code "
+                + "WHERE  "
+                + "    theme_code IS NOT NULL  "
+                + "    AND theme_code <> ''  "
+                + "    AND t.status = 'Active'   "
+                + "    AND idea_no IS NOT NULL   "
+                + "GROUP BY  "
+                + "    theme_code, theme_name "
+                + ""; 
+        objsList = jdbcTemplate.query( qry, new BeanPropertyRowMapper<BrainBox>(BrainBox.class));
+        return objsList;
+    }
 
 	public List<BrainBox> getThemeListOne(BrainBox obj) {
 		List<BrainBox> objsList = new ArrayList<BrainBox>();

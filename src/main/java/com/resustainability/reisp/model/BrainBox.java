@@ -6,15 +6,39 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class BrainBox {
 
-	private String id,	theme_code,	theme_name,action,is_anonymous,	description,inActive_themes,all_themes,active_themes,	created_date,	modified_date,
-		title,	theme,sbu,	project,sbu_code,sbu_name,approver_name,project_code,project_name,role_code,from_and_to,from_date,to_date,department_code,department_name,
-		department,	idea_no,StatusChanged,email,created_by,role,user,approver_type_before,approver_type_name,project_head,
-		next_level_user,type_prevs,approver_prvs,modified_by,modified_user_name,modified_user_email,send_back_email,Creater_user_name,
-		employee_code_before,relevent_idea,mainStatus,employee_code,assign_theme,ca_before,	status,	comments,user_name,user_id,email_id	,approver_type,	approver_code,	assigned_on	,action_taken	,attachment	,sb_notes,
-		sb_date	,reinitiate_date,submitter_email,i_completed,i_pending,admin_incidents,counts,maxRole2,not_assigned,maxRole,sendBack,
-		estimated_improvements,do_ability,impact,impact_business,committee_members,idea_base_role,bb_impact,action_taken_now,theme1,theme2,theme3
-		,theme4,theme5,theme6,theme7,theme8,theme9,theme10,theme11,theme12,theme13,theme14,theme15,theme16,theme17,theme18,theme19,theme20,theme21,
-		theme22,theme23,theme24,theme25;
+	private String id,    theme_code,    theme_name,action,is_anonymous,    description,inActive_themes,all_themes,active_themes,    created_date,    modified_date,
+    title,    theme,sbu,    project,sbu_code,sbu_name,approver_name,project_code,project_name,role_code,from_and_to,from_date,to_date,department_code,department_name,
+    department,    idea_no,StatusChanged,email,created_by,role,user,approver_type_before,approver_type_name,project_head,
+    next_level_user,type_prevs,approver_prvs,modified_by,modified_user_name,modified_user_email,send_back_email,Creater_user_name,
+    employee_code_before,relevent_idea,mainStatus,employee_code,assign_theme,ca_before,    status,    comments,user_name,user_id,email_id    ,approver_type,    approver_code,    assigned_on    ,action_taken    ,attachment    ,sb_notes,
+    sb_date    ,reinitiate_date,submitter_email,i_completed,i_pending,admin_incidents,counts,maxRole2,not_assigned,maxRole,sendBack,
+    estimated_improvements,do_ability,impact,impact_business,committee_members,idea_base_role,bb_impact,action_taken_now,theme1,theme2,theme3
+    ,theme4,theme5,theme6,theme7,theme8,theme9,theme10,theme11,theme12,theme13,theme14,theme15,theme16,theme17,theme18,theme19,theme20,theme21,in_progress_count,resolved_count,rejected_count,
+    theme22,theme23,theme24,theme25;
+
+	public String getIn_progress_count() {
+		return in_progress_count;
+	}
+
+	public void setIn_progress_count(String in_progress_count) {
+		this.in_progress_count = in_progress_count;
+	}
+
+	public String getResolved_count() {
+		return resolved_count;
+	}
+
+	public void setResolved_count(String resolved_count) {
+		this.resolved_count = resolved_count;
+	}
+
+	public String getRejected_count() {
+		return rejected_count;
+	}
+
+	public void setRejected_count(String rejected_count) {
+		this.rejected_count = rejected_count;
+	}
 
 	private MultipartFile[] mediaList;
 	List<BrainBox> BBIncidentsList,BBRolesList,titleList;

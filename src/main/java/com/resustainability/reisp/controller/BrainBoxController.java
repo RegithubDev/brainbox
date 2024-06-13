@@ -482,6 +482,7 @@ public class BrainBoxController {
 		return model;
 	}
 	
+
 	@RequestMapping(value = "/update-idea", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView updateTheme(@ModelAttribute BrainBox obj,RedirectAttributes attributes,HttpSession session) {
 		boolean flag = false;
