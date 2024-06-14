@@ -420,7 +420,7 @@ tr td:last-child {
             </li>
                </c:if> --%>
            <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
-            <li class="nav-item" onclick="getBrainBoxList('bb');">
+          <!--   <li class="nav-item" onclick="getBrainBoxList('bb');">
               <a
                 class="nav-link"
                 id="settings-tab-justified"
@@ -431,7 +431,7 @@ tr td:last-child {
                 aria-selected="false"
                 >Existing Ideas</a
               >
-            </li>
+            </li> -->
                </c:if>
           </ul>
 

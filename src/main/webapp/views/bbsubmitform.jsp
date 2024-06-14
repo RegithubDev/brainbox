@@ -209,8 +209,7 @@ tr td:last-child {
            <div class="content-header-right col-md-5 col-12 mb-2">
             <div class="row breadcrumbs-top">
               <div class="col-12">
-                <button type="button" class="btn " onclick="addBox();" data-bs-toggle="modal" data-bs-target="#addIdea" style="margin-top: 17px; color: white !important; background-color: orange !important;"><i class="fa fa-add" aria-hidden="true"></i> Submit New Idea</button>
-         <button class="btn col-md-12" style="margin-top: 17px; width: 27%;     background-color: #14e014 !important;color: white !important;"  onclick="exportBrainBox();"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+                <button style="display:none;" class="btn " onclick="addBox();"  id="click" data-bs-toggle="modal" data-bs-target="#addIdea" style="margin-top: 17px; color: white !important; background-color: orange !important;"><i class="fa fa-add" aria-hidden="true"></i> Submit New Idea</button>
 <!--           <button type="button" class="btn btn-primary" style="margin-top: 17px; "" onclick="historyRE();"><i class="fa fa-trophy" aria-hidden="true"></i></button>
  -->     
               </div>
@@ -231,127 +230,8 @@ tr td:last-child {
         </div>
         <div class="content-body"><!-- Dashboard Analytics Start -->
 <section id="dashboard-analytics">
-<div class="row match-height" >
-<div class="col-lg-6 col-sm-6 col-12"  style="box-sizing:border-box; display:table;">
-  
-     <div class="col-lg-3 col-sm-3 col-6"  style="padding: 1rem;display:table-cell;">
-       <div class="col-md-12 mb-1">
-              <select class="select2 form-select" id="select2-theme_filter-container" >
-                <option value="">Select Theme</option>
-              </select>
- 				          </div>
-          <h2 class="fw-bolder mt-1"></h2>  
-    </div>
-  <div class="col-lg-3 col-sm-3 col-6"  style="padding: 1rem;display:table-cell;">
-       <div class="col-md-12 mb-1">
-              <select class="select2 form-select" id="select2-status_filter-container" >
-                <option value="">Select Status</option>
-                <option value="">Open</option>
-                <option value="">Approved</option>
-                <option value="">Revoked</option>
-              </select>
- 	   </div>
-          <h2 class="fw-bolder mt-1"></h2>
-    </div>
-    <div class="col-lg-3 col-sm-3 col-6"  style="padding: 1rem;display:table-cell;">
-       <div class="col-md-12 mb-1">
-              <input
-            type="text"
-            id="from_and_to"
-            name="from_and_to"
-            class="form-control flatpickr-range"
-            placeholder="from and to"
-          />
- 	   </div>
-          <h2 class="fw-bolder mt-1"></h2>
-    </div>
-    <!--  <div class="row" style=" padding: 1rem;">
-     
-        <div class="col-md-6 mb-1">
-          <input
-            type="text"
-            id="fp-range"
-            class="form-control flatpickr-range"
-            placeholder="from and to"
-          />
-      </div>
-      </div> -->
-</div>
-<div class="col-lg-2 col-sm-2 col-12"  style="box-sizing:border-box; display:table;">
-    <div class="col-lg-3 col-sm-3 col-6"  style="padding: .5rem;display:table-cell;">
-     <button class="btn btn-primary col-md-12" style="margin-top: 10px; width: 45%;     background-color: gainsboro"  onclick="getBrainBoxList('searchTag');"><i class="fa fa-search" aria-hidden="true"></i></button>
-         <button class="btn btn-primary col-md-12" style="margin-top: 10px; width: 45%;     background-color: gainsboro"  onclick="clearFilter();"><i class="fa fa-undo" aria-hidden="true"></i></button>
-     </div>
-</div>
 
-     
-</div> 
-  <div class="row match-height" style=" display: flex;  justify-content: left ">
-    <!-- Greetings Card starts -->
-
-    <!-- Greetings Card ends -->
-    <!-- Subscribers Chart Card starts -->
-
-<div class="col-lg-3 col-sm-6 col-12">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h3 class="fw-bolder mt-1">  <span id= "allIncidents"></span>
-           </h3>
-            <p class="card-text">Total Ideas Submitted</p>
-          </div>
-          <div class="avatar bg-light-primary p-50 m-0">
-            <div class="avatar-content">
-<i data-feather='layers'></i>               </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<div class="col-lg-3 col-sm-6 col-12">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h3 class="fw-bolder mt-1"><span id= "activeApprovers"></span></h3>
-            <p class="card-text">Ideas Evaluation</p>
-          </div>
-          <div class="avatar bg-light-warning p-50 m-0">
-            <div class="avatar-content">
-				<i class="fa-solid fa-spinner fa-spin-pulse" style="--fa-animation-duration: 5s;"></i>
-		    </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-sm-6 col-12">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h3 class="fw-bolder mt-1"><span id= "inActiveApprovers"></span></h3>
-            <p class="card-text">Ideas Rejected</p>
-          </div>
-          <div class="avatar bg-light-danger p-50 m-0">
-            <div class="avatar-content">
-<i data-feather='zap-off'></i>               </div>
-          </div>
-        </div>
-      </div>
-    </div>
- <div class="col-lg-3 col-sm-6 col-12">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h3 class="fw-bolder mt-1"><span id= "Resolved">0</span></h3>
-            <p class="card-text">Ideas Implementation</p>
-          </div>
-          <div class="avatar bg-light-success p-50 m-0">
-            <div class="avatar-content">
-<i data-feather='bar-chart'></i>        </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Orders Chart Card ends -->
-  </div>
+ 
   <!-- List DataTable -->
   <div>
   	
@@ -363,7 +243,7 @@ tr td:last-child {
         <div class="card-body">
           <ul class="nav nav-tabs nav-justified" id="myTab2" role="tablist">
           <%--  <c:if test="${sessionScope.BASE_ROLE eq 'Admin' || sessionScope.BASE_ROLE eq 'Management' }"> --%>
-            <li class="nav-item" onclick="getBrainBoxList('bb-my');">
+           <!--  <li class="nav-item" onclick="getBrainBoxList('bb-my');">
               <a
                 class="nav-link active"
                 id="home-tab-justified"
@@ -374,7 +254,7 @@ tr td:last-child {
                 aria-selected="true"
                >My Idea</a
               >
-            </li>
+            </li> -->
          <%--   </c:if> --%>
          <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
              <li class="nav-item"  onclick="getBrainBoxList('bb-pending');">
@@ -386,13 +266,13 @@ tr td:last-child {
                 role="tab"
                 aria-controls="profile-just"
                 aria-selected="true"
-                 >Pending Ideas <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-float waves-light">
+                 >Ideas <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-float waves-light">
 <i class='fa-solid fa-shake' style="margin-right: 0.0rem;"><span id="counts" style="font-style: initial;">0</span></i></button></a
               >
             </li>
             </c:if>
               <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
-            <li class="nav-item"  onclick="getBrainBoxList('bb-completed');">
+           <!--  <li class="nav-item"  onclick="getBrainBoxList('bb-completed');">
               <a
                 class="nav-link"
                 id="messages-tab-justified"
@@ -403,7 +283,7 @@ tr td:last-child {
                 aria-selected="false"
                 >Approved Ideas</a
               >
-            </li>
+            </li> -->
               </c:if>
             <%-- <c:if test="${sessionScope.BASE_ROLE eq 'Admin' }">
             <li class="nav-item" onclick="getBrainBoxList('bb-no-reviewer');">
@@ -420,7 +300,7 @@ tr td:last-child {
             </li>
                </c:if> --%>
            <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
-            <li class="nav-item" onclick="getBrainBoxList('bb');">
+          <!--   <li class="nav-item" onclick="getBrainBoxList('bb');">
               <a
                 class="nav-link"
                 id="settings-tab-justified"
@@ -431,7 +311,7 @@ tr td:last-child {
                 aria-selected="false"
                 >Existing Ideas</a
               >
-            </li>
+            </li> -->
                </c:if>
           </ul>
 
@@ -1248,12 +1128,15 @@ tr td:last-child {
     <script>
     $('#addIdea').on('show.bs.modal', function (event) {
         $(document).ready(function() {
+        	
             $('.select2').select2({
                 dropdownParent: $('#addIdea')
+                
             });
         }); 
     });
       $(window).on("load",(function(){
+    	  $('#click').trigger('click');
     	 // jQuery('#clickModal').click();
           if (feather) {
             feather.replace({ width: 14, height: 14 });
