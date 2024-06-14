@@ -1227,7 +1227,7 @@ h1{
         <input type="hidden" name="company_code" id="exportBB_filter" />
         <input type="hidden" name="status" id="exportStatus_filter" />
 	</form>
-    <script>
+    <script> 
       $(window).on("load",(function(){
     	  
           if (feather) {
