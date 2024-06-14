@@ -141,7 +141,7 @@ tr td:last-child {
   <!-- END: Head-->
 
   <!-- BEGIN: Body-->
-  <body class="horizontal-layout horizontal-menu  navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="">
+  <body class="pace-done horizontal-layout horizontal-menu navbar-floating footer-static menu-expanded modal-open" data-open="hover" data-menu="horizontal-menu" data-col="">
 
     <!-- BEGIN: Header-->
 	<jsp:include page="../views/layout/header.jsp"></jsp:include> 

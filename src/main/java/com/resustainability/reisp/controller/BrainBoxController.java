@@ -516,6 +516,63 @@ public class BrainBoxController {
 		return model;
 	}
 	
+	
+	
+	
+	@RequestMapping(value = "/dashboardbbnew/{theme_code}", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView bbsubmitformForm(@ModelAttribute User user,BrainBox obj,@PathVariable("theme_code") String theme_code , HttpSession session) {
+		ModelAndView model = new ModelAndView(PageConstants.bbsubmitform);
+		String userId = null;
+		String userName = null;    
+		List<BrainBox> companiesList = null; 
+		String role = null;String idea_role = null;
+		try {
+			userId = (String) session.getAttribute("USER_ID");
+			userName = (String) session.getAttribute("USER_NAME"); 
+			role = (String) session.getAttribute("BASE_ROLE");idea_role = (String) session.getAttribute("IDEA_BASE_ROLE");
+			String email = (String) session.getAttribute("USER_EMAIL");
+			user.setRole(role);
+			user.setUser_id(userId);
+			User uBoj = new User();
+			uBoj.setEmail_id(email);
+			List <BrainBox> projectsList = service.getProjectstList();
+			model.addObject("projectsList", projectsList);
+
+			User userDetails = service1.validateUser(user);
+			model.addObject("reward_points", userDetails.getReward_points());
+			List <BrainBox> deptsList = service.getDepartments();
+			model.addObject("deptsList", deptsList);
+			
+			List<BrainBox> sbuList = service.getSbuList();
+			model.addObject("sbuList", sbuList);
+			
+			List<BrainBox> themeList = service.getThemeList();
+			model.addObject("themeList", themeList);
+			
+			List<User> rewardsList = service1.getRewardsHistory(user);
+		     model.addObject("rewardsList", rewardsList);
+			 
+		     companiesList = service.getThemesInBB(obj);
+		     if(companiesList.size() > 0) {
+				 model.addObject("counts", companiesList.get(0).getCounts());
+				
+			 }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return model;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/export-idea", method = {RequestMethod.GET,RequestMethod.POST})
 	public void exportTheme(HttpServletRequest request, HttpServletResponse response,HttpSession session,@ModelAttribute BrainBox obj,RedirectAttributes attributes){
 		ModelAndView view = new ModelAndView(PageConstants.theme);
