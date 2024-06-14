@@ -49,7 +49,77 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/brainbox/resources/css/style.css">
     
-    <style>
+    <style>.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 80%);
+    transform: translate(-25%, -25%) rotate(45deg);
+    animation: shine 2s linear infinite; /* Continuous animation */
+  }
+
+  @keyframes shine {
+    from {
+      top: -10%;
+      left: -10%;
+    }
+    to {
+      top: 110%;
+      left: 110%;
+    }
+  }
+
+  .button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .button:active {
+    background-color: #3e8e41; /* Even darker green when clicked */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+     .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  .button-container .btn {
+    flex: 1;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .button-container .btn:first-child {
+    margin-left: 0;
+  }
+  .button-container .btn:last-child {
+    margin-right: 0;
+  }
+  .button-container .btn .count {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .button-container .btn .label {
+    font-size: 0.9rem;
+  }
     
     .teal-color {
         color:orange;
@@ -160,11 +230,33 @@
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">230k</h4>
+                  <h4 class="fw-bolder mb-0"> 
+                  <c:set var="totalCount" value="0" />
+					<c:forEach var="obj1" items="${themeList}">
+					    <c:set var="totalCount" value="${totalCount + obj1.counts}" />
+					</c:forEach>
+					${totalCount}
+                  </h4>
                   <p class="card-text font-small-3 mb-0">Total Ideas</p>
                 </div>
               </div>
             </div>
+            <c:forEach var="obj1" items="${themeList}">
+			    <c:set var="statusList" value="${fn:split(obj1.status, ',')}" />
+			    <c:forEach var="status" items="${statusList}">
+			        <c:choose>
+			            <c:when test="${status == 'In Progress'}">
+			                <c:set var="inProgressCount" value="${inProgressCount + 1}" />
+			            </c:when>
+			            <c:when test="${status == 'Resolved'}">
+			                <c:set var="resolvedCount" value="${resolvedCount + 1}" />
+			            </c:when>
+			            <c:when test="${status == 'Rejected'}">
+			                <c:set var="rejectedCount" value="${rejectedCount + 1}" />
+			            </c:when>
+			        </c:choose>
+			    </c:forEach>
+			</c:forEach>
             <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
               <div class="d-flex flex-row">
                 <div class="avatar bg-light-info me-2">
@@ -173,7 +265,7 @@
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">8.549k</h4>
+                  <h4 class="fw-bolder mb-0">${inProgressCount}</h4>
                   <p class="card-text font-small-3 mb-0">Active Ideas</p>
                 </div> 
               </div>
@@ -182,11 +274,10 @@
               <div class="d-flex flex-row">
                 <div class="avatar bg-light-success me-2">
                   <div class="avatar-content">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign avatar-icon"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                  </div>
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check avatar-icon font-medium-3"><polyline points="20 6 9 17 4 12"></polyline></svg>                  </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">$9745</h4>
+                  <h4 class="fw-bolder mb-0">${resolvedCount}</h4>
                   <p class="card-text font-small-3 mb-0">Approved Ideas</p>
                 </div>
               </div>
@@ -199,7 +290,7 @@
                   </div>
                 </div>
                 <div class="my-auto">
-                  <h4 class="fw-bolder mb-0">1.423k</h4>
+                  <h4 class="fw-bolder mb-0">${rejectedCount}</h4>
                   <p class="card-text font-small-3 mb-0">Rejected Ideas</p>
                 </div>
               </div>
@@ -222,7 +313,7 @@
                <input type="text" class="form-control"  placeholder="Search SBU" />
                
             </div> -->
-            <div class="input-group input-group-merge" style="width: 50%;">
+            <div class="input-group input-group-merge" style="width: 70%;">
               <span class="input-group-text"><i data-feather="search"></i></span>
               <input type="text" class="form-control" id="searchbar" list="browsers" placeholder="Search Here" />
              <%--   <datalist id="browsers">
@@ -233,59 +324,84 @@
             </div>
           </form> 
         </div>
-  <div class="row kb-search-content-info match-height">
+<div class="row kb-search-content-info match-height">
   
-   <c:forEach var="obj1" items="${themeList}">
-   
+  <c:forEach var="obj1" items="${themeList}">
     <div class="col-md-4 col-sm-6 col-12 kb-search-content">
       <div class="card">
-      
-           <div class="card-body">
+        <div class="card-body">
           <!-- account setting header -->
-          <h6 class="kb-title">
-            <span><b>[${obj1.theme_code }] - ${obj1.theme_name } (${ obj1.counts})</b></span>
-            <input class="tCodes" type="hidden" value="${obj1.theme_code}  ${obj1.theme_name }" />
-          </h6>
-          <div class="list-group list-group-circle mt-2 stdtable">
-           <c:choose>
-		         <c:when test="${  fn:contains( obj1.title, ',' ) }">
-		            <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
-             		  <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
-             		   <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
-             		    <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
-             		     <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
-             		 <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
-             		 
-             		
-					</c:forEach>
-		         </c:when>
-		         <c:otherwise>
-		           
-		         </c:otherwise>
-		      </c:choose>
+ 
+ <h6 class="kb-title">
+    <span><b>[${obj1.theme_code}] - ${obj1.theme_name} <span class="badge bg-dark text-light">${obj1.counts}</span></b></span>
+    <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
+      
+       <div style="text-align: end; position: relative;left: 3.5rem;">
+    <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-primary" title="View in Detail">Submit Idea</button>
+</div>
+    
+</h6>
+ 
+          
+          <!-- Horizontal buttons with values and labels -->
+          <div class="button-container">
+            <button type="button" class="btn btn-outline-primary">
+              <div class="count">${obj1.in_progress_count}</div>
+              <div class="label">In Progress</div>
+            </button>
+            <button type="button" class="btn btn-outline-success">
+              <div class="count">${obj1.resolved_count}</div>
+              <div class="label">Approved</div>
+            </button>
+            <button type="button" class="btn btn-outline-danger">
+              <div class="count">${obj1.rejected_count}</div>
+              <div class="label">Rejected</div>
+            </button>
           </div>
           
+          <div class="list-group list-group-circle mt-2 stdtable">
+            <c:choose>
+              <c:when test="${fn:contains(obj1.title, ',')}">
+                <c:set var="filesLists" value="${fn:split(obj1.idea_no, ',')}" />
+                <c:set var="filesList" value="${fn:split(obj1.title, ',')}" />
+                <c:set var="filesListss" value="${fn:split(obj1.status, ',')}" />
+                <c:set var="sbus" value="${fn:split(obj1.sbu, ',')}" />
+                <c:set var="sbun" value="${fn:split(obj1.sbu_name, ',')}" />
+                <c:forEach var="obj" items="${filesLists}" varStatus="index"> 
+                  <!-- Additional logic here if needed -->
+                </c:forEach>
+              </c:when>
+              <c:otherwise>
+                <!-- Logic for non-comma separated values -->
+              </c:otherwise>
+            </c:choose>
+          </div>
         </div>
-             <div style="text-align: end;position: relative;top: -1rem;left: -2rem;"><button type="button" onclick="goToFilterPage('${obj1.theme_code }')"
-              class="btn btn-relief-danger" title="view in Detail">More..</button></div>
-        
-        </a>
+      <%--   
+       <div style="text-align: end; position: relative; top: -1rem; left: rem;">
+    <button type="button" onclick="location.href='<%=request.getContextPath()%>/bb-is?theme_code=${obj1.theme_code}'" class="btn btn-relief-danger" title="View in Detail">Submit Idea</button>
+</div>
+ --%>
       </div>
     </div>
-   </c:forEach>
-    <!-- no result -->
-    <c:if test="${empty themeList }">
-    <div class="col-12 text-center ">
+  </c:forEach>
+
+  <!-- no result -->
+  <c:if test="${empty themeList}">
+    <div class="col-12 text-center">
       <h4 class="mt-4">No Ideas found!!</h4>
     </div>
-    </c:if>
-    <c:if test="${not empty themeList }">
-	     <div class="col-12 text-center no-result no-items">
-	      <h4 class="mt-4">Search result not found!!</h4>
-	    </div>
-    </c:if>
-   
-  </div> 
+  </c:if>
+  
+  <c:if test="${not empty themeList}">
+    <div class="col-12 text-center no-result no-items">
+      <h4 class="mt-4">Search result not found!!</h4>
+    </div>
+  </c:if>
+</div>
+
+
+
 </section>
 <!-- Knowledge base ends -->
 
