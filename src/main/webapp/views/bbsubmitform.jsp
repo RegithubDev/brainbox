@@ -210,22 +210,13 @@ tr td:last-child {
             <div class="row breadcrumbs-top">
               <div class="col-12">
                 <button style="display:none;" class="btn " onclick="addBox();"  id="click" data-bs-toggle="modal" data-bs-target="#addIdea" style="margin-top: 17px; color: white !important; background-color: orange !important;"><i class="fa fa-add" aria-hidden="true"></i> Submit New Idea</button>
-<!--           <button type="button" class="btn btn-primary" style="margin-top: 17px; "" onclick="historyRE();"><i class="fa fa-trophy" aria-hidden="true"></i></button>
- -->     
+    
               </div>
             </div>
           </div>
           
-      <!--       <div class="col-lg-4 col-sm-4 col-12"style="
-    display: flex;
-    align-items: center;
-">
-    <div class="col-lg-8 col-sm-4 col-4">
-    <button type="button" class="btn " onclick="addBox();" data-bs-toggle="modal" data-bs-target="#addIdea"style="margin-top: 17px; width: 62%; color: white !important; background-color: orange !important;"><i data-feather='box'></i> Submit New Idea</button>
-     <button class="btn col-md-12" style="margin-top: 17px; width: 22%;     background-color: #14e014 !important;color: white !important;"  onclick="exportBrainBox();"><i class="fa fa-download" aria-hidden="true"></i></button>
-     </div>
-  
-  </div> -->
+    
+  </div> 
           
         </div>
         <div class="content-body"><!-- Dashboard Analytics Start -->
