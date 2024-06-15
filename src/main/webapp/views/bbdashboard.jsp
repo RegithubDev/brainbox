@@ -372,6 +372,7 @@
                 </c:forEach>
               </c:when>
               <c:otherwise>
+              
                 <!-- Logic for non-comma separated values -->
               </c:otherwise>
             </c:choose>

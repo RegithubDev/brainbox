@@ -102,7 +102,7 @@ public class HomeController {
 					 * }
 					 */ 
 			}else if(role.equals("User")) {
-				 model = new ModelAndView(PageConstants.bbForm);
+				 model = new ModelAndView(PageConstants.bbdashboard);
 				 model.setViewName("redirect:/bb-is");
 				// model.addObject("rewardsList", rewardsList);
 				// model.addObject("reward_points", userDetails.getReward_points());
