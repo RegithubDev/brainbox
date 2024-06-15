@@ -1136,7 +1136,7 @@ public class UserDao {
 	public List<User> getMenuList() throws SQLException {
 		List<User> menuList = null;
 		try{  
-			String qry = "select id, module_name, module_url from [form_menu] where project is null or project = 'safety' order by priority asc ";
+			String qry = "select id, module_name, module_url from [form_menu] where project is null or project = 'brainbox' order by priority asc ";
 			menuList = jdbcTemplate.query( qry, new BeanPropertyRowMapper<User>(User.class));
 			
 		}catch(Exception e){ 

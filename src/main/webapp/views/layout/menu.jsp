@@ -77,7 +77,10 @@ div.main-menu-content {
 	           			$('#bb').addClass('active');
 	           		}else if(url.indexOf('/bb-dashboard') != -1){
 	           			$('#bbd').addClass('active');
-	           		}else if(url.indexOf('/home') != -1){
+	           		}else if(url.indexOf('/dashboardbbnew') != -1){
+	           			$('#bbd').addClass('active');
+	           		}
+	           		else if(url.indexOf('/home') != -1){
 	           			$('#home').addClass('active');
 	           		}else if(url.indexOf('/help') != -1){
 	           			$('#help').addClass('active');

@@ -189,14 +189,14 @@ tr td:last-child {
       <div class="header-navbar-shadow"></div>
       <div class="content-wrapper container-xxl p-0">
         <div class="content-header row">
-           <div class="content-header-left col-md-7 col-12 mb-2">
+          <%--  <div class="content-header-left col-md-7 col-12 mb-2">
             <div class="row breadcrumbs-top">
               <div class="col-12">
                  <h2 class="content-header-title float-start mb-0">BrainBox </h2>
                 <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                  <%--    <c:if test="${sessionScope.BASE_ROLE ne 'User' }">   <li class="breadcrumb-item"><a href="<%=request.getContextPath() %>/home">Home</a>
-                    </li></c:if> --%>
+                     <c:if test="${sessionScope.BASE_ROLE ne 'User' }">   <li class="breadcrumb-item"><a href="<%=request.getContextPath() %>/home">Home</a>
+                    </li></c:if>
 
                     <li class="breadcrumb-item active">Dashboard 
                     </li>
@@ -204,7 +204,31 @@ tr td:last-child {
                 </div>
               </div>
             </div>
-          </div>
+          </div> --%>
+          <div class="content-header-left col-md-7 col-12 mb-2">
+  <div class="row breadcrumbs-top">
+    <div class="col-12">
+      <h2 class="content-header-title float-start mb-0">BrainBox</h2>
+      <div class="breadcrumb-wrapper">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="<%=request.getContextPath() %>/bb-dashboard">Back to Dashboard</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+          
+          <%--  <div class="col-12 text-center mt-2 pt-50">
+          <!--   <button type="button" class="btn btn-primary me-1" onclick="addIdea();">Submit</button>
+            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
+              Discard
+            </button> -->
+                        <a type="button" class="btn btn-dark waves-effect waves-float waves-light me-1" href="<%=request.getContextPath() %>/bb-dashboard"><i data-feather='arrow-left-circle'></i> Back to Dashboard</a>
+            
+            
+          </div> --%>
           
            <div class="content-header-right col-md-5 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -263,7 +287,7 @@ tr td:last-child {
             </li>
             </c:if>
               <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
-           <!--  <li class="nav-item"  onclick="getBrainBoxList('bb-completed');">
+           <li class="nav-item"  onclick="getBrainBoxList('bb-completed');">
               <a
                 class="nav-link"
                 id="messages-tab-justified"
@@ -272,11 +296,11 @@ tr td:last-child {
                 role="tab"
                 aria-controls="messages-just"
                 aria-selected="false"
-                >Approved Ideas</a
+                >Approved Ideas </a
               >
-            </li> -->
+            </li> 
               </c:if>
-            <%-- <c:if test="${sessionScope.BASE_ROLE eq 'Admin' }">
+            <c:if test="${sessionScope.BASE_ROLE eq 'Admin' }">
             <li class="nav-item" onclick="getBrainBoxList('bb-no-reviewer');">
               <a
                 class="nav-link"
@@ -286,10 +310,10 @@ tr td:last-child {
                 role="tab"
                 aria-controls="settings-just"
                 aria-selected="false"
-                >No Reviewer Found</a
+                >Rejected</a
               >
             </li>
-               </c:if> --%>
+               </c:if> 
            <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
           <!--   <li class="nav-item" onclick="getBrainBoxList('bb');">
               <a
@@ -516,6 +540,8 @@ tr td:last-child {
             <input type="hidden" id="email_id" name="email_id" />
              <input type="hidden" id="approver_name" name="approver_name" />
              <input type="hidden" id="incident_name" name="incident_name" />
+    
+
         <div class="col-12 col-md-12">
             <label class="form-label" for="modalEditUserFirstName"> Idea in Short</label><span class="required"> *</span>
             <input
@@ -552,10 +578,11 @@ tr td:last-child {
              <span id="description_addError" class="error-msg" ></span>
           </div>
           	<div class="col-12 col-md-12">
+          	<input type="hidden" id="theme"  name="theme" />
             <label class="form-label" for="select2-basic">Select Idea Theme</label><span class="required"> *</span>
     		   <select 
               id="select2-theme_add-container"
-              name="theme"
+             
               class="select2 form-select formSelect"
               aria-label="Default select example" onchange="roleMapping('Evaluator');"
             >
@@ -666,6 +693,9 @@ tr td:last-child {
             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
               Discard
             </button>
+                        <a type="button" class="btn btn-dark waves-effect waves-float waves-light" href="<%=request.getContextPath() %>/bb-dashboard"><i data-feather='arrow-left-circle'></i> Back to Dashboard</a>
+            
+            
           </div>
         </form>
       </div>
@@ -1128,6 +1158,18 @@ tr td:last-child {
     });
       $(window).on("load",(function(){
     	  $('#click').trigger('click');
+    	  var currentURL = window.location.href;
+    	  var parts = currentURL.split('/');
+    	  var dname = parts[5];
+    	  $('#theme').val(dname);
+    	  $('#select2-theme_add-container option').each(function() {
+              if ($(this).val() === dname) {
+                  $(this).prop('selected', true); // Mark option as selected
+                  $('#select2-theme_add-container').prop('disabled', true); // Disable the select field
+              }
+          });
+    	   $('#requestURL').val(dname);
+    	   roleMapping('Evaluator');
     	 // jQuery('#clickModal').click();
           if (feather) {
             feather.replace({ width: 14, height: 14 });

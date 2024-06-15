@@ -79,7 +79,7 @@ public class RoleMasterController {
 	@Value("${template.upload.formatError}")
 	public String uploadformatError;
 	
-	@RequestMapping(value = "/role-master", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/idea-role-master", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView roleMaster(@ModelAttribute User user, HttpSession session) {
 		ModelAndView model = new ModelAndView(PageConstants.role_master);
 		RoleMaster obj = null;
