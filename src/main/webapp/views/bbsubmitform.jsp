@@ -271,10 +271,10 @@ tr td:last-child {
               >
             </li> -->
          <%--   </c:if> --%>
-         <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
+       <%--   <c:if test="${sessionScope.BASE_ROLE ne 'User' }"> --%>
              <li class="nav-item"  onclick="getBrainBoxList('bb-pending');">
               <a
-                class="nav-link"
+                class="nav-link active"
                 id="profile-tab-justified"
                 data-bs-toggle="tab"
                 href="#profile-just"
@@ -285,8 +285,8 @@ tr td:last-child {
 <i class='fa-solid fa-shake' style="margin-right: 0.0rem;"><span id="counts" style="font-style: initial;">0</span></i></button></a
               >
             </li>
-            </c:if>
-              <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
+          <%--   </c:if> --%>
+            <%--   <c:if test="${sessionScope.BASE_ROLE ne 'User' }"> --%>
            <li class="nav-item"  onclick="getBrainBoxList('bb-completed');">
               <a
                 class="nav-link"
@@ -299,9 +299,9 @@ tr td:last-child {
                 >Approved Ideas </a
               >
             </li> 
-              </c:if>
-            <c:if test="${sessionScope.BASE_ROLE eq 'Admin' }">
-            <li class="nav-item" onclick="getBrainBoxList('bb-no-reviewer');">
+            <%--   </c:if> --%>
+          <%--   <c:if test="${sessionScope.BASE_ROLE eq 'Admin' }"> --%>
+           <!--  <li class="nav-item" onclick="getBrainBoxList('bb-no-reviewer');">
               <a
                 class="nav-link"
                 id="settings-tab-norevirwer"
@@ -312,9 +312,9 @@ tr td:last-child {
                 aria-selected="false"
                 >Rejected</a
               >
-            </li>
-               </c:if> 
-           <c:if test="${sessionScope.BASE_ROLE ne 'User' }">
+            </li> -->
+              <%--  </c:if>  --%>
+          <%--  <c:if test="${sessionScope.BASE_ROLE ne 'User' }"> --%>
           <!--   <li class="nav-item" onclick="getBrainBoxList('bb');">
               <a
                 class="nav-link"
@@ -327,12 +327,12 @@ tr td:last-child {
                 >Existing Ideas</a
               >
             </li> -->
-               </c:if>
+             <%--   </c:if> --%>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content pt-1">
-            <div class="tab-pane active" id="home-just" role="tabpanel" aria-labelledby="home-tab-justified">
+    <!--         <div class="tab-pane active" id="home-just" role="tabpanel" aria-labelledby="home-tab-justified">
              <div class="card-datatable table-responsive">
 		       <div class="dt-buttons text-primary" style="height : 1.5em;">
 		      
@@ -353,8 +353,8 @@ tr td:last-child {
 		            </thead>
 		          </table>
 		        </div>
-            </div>
-            <div class="tab-pane" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-justified" >
+            </div> -->
+            <div class="tab-pane active" id="profile-just" role="tabpanel" aria-labelledby="profile-tab-justified" >
                <div class="card-datatable table-responsive">
 		       <div class="dt-buttons" style="height : 1.5em;">
 		        </div>
@@ -398,7 +398,7 @@ tr td:last-child {
 		        </div>
             </div>
 
-	    <!--  <div class="tab-pane" id="settings-just" role="tabpanel" aria-labelledby="settings-tab-norevirwer">
+	   <!--    <div class="tab-pane" id="settings-just" role="tabpanel" aria-labelledby="settings-tab-norevirwer">
              <div class="card-datatable table-responsive">
 		        <div class="dt-buttons text-primary" style="height : 1.5em;">
 		      
@@ -419,9 +419,9 @@ tr td:last-child {
 		            </thead>
 		          </table>
 		        </div>
-            </div>
-             -->
-            <div class="tab-pane" id="settings-just-all" role="tabpanel" aria-labelledby="settings-tab-justified">
+            </div> -->
+             
+        <!--     <div class="tab-pane" id="settings-just-all" role="tabpanel" aria-labelledby="settings-tab-justified">
              <div class="card-datatable table-responsive">
 		        <div class="dt-buttons text-primary" style="height : 1.5em;">
 		      
@@ -442,7 +442,7 @@ tr td:last-child {
 		            </thead>
 		          </table>
 		        </div>
-            </div>
+            </div> -->
             
             
           </div>
@@ -1156,11 +1156,12 @@ tr td:last-child {
             });
         }); 
     });
+    var dname;
       $(window).on("load",(function(){
     	  $('#click').trigger('click');
     	  var currentURL = window.location.href;
     	  var parts = currentURL.split('/');
-    	  var dname = parts[5];
+    	  dname = parts[5];
     	  $('#theme').val(dname);
     	  $('#select2-theme_add-container option').each(function() {
               if ($(this).val() === dname) {
@@ -1670,7 +1671,7 @@ tr td:last-child {
 	    	}
 	    	clickedTags = window.localStorage.getItem("clickedTags");
 	    	if(tag == '' ){
-	    		tag = 'bb-my'
+	    		tag = 'bb-pending'
 	    		window.localStorage.setItem("clickedTags", tag);
 	    		
 	    	}else if(tag == "searchTag"){
@@ -1809,7 +1810,7 @@ tr td:last-child {
 		                    	type = maxRole;
 		                    }
 		                   	key++;
-		                	$('#counts').html(val.counts)
+		                	//$('#counts').html(val.counts)
 		                    $('#allIncidents').html(val.all_themes)
 		            		$('#activeApprovers').html(val.not_assigned)
 		           
@@ -1826,22 +1827,24 @@ tr td:last-child {
 		                  	 }else{
 		                  		A_Taken = '' ;
 		                  	 }
-		                	rowArray.push($.trim(key));
-		                	rowArray.push($.trim(actions));  
-		                 	rowArray.push($.trim(title));
-		                	//rowArray.push("["+ $.trim(val.theme_code)+"]"+" - "+val.theme_name);
-		                	rowArray.push($.trim(val.theme_name));
-		                	rowArray.push($.trim(val.title));
-		                	rowArray.push($.trim(maxRole2));
-		                  	/* rowArray.push("["+ $.trim(val.sbu_code)+"]"+" - "+ val.sbu_name);
-		                   	rowArray.push("["+ $.trim(val.project_code)+"]"+" - "+ val.project_name);
-		                	rowArray.push("["+ $.trim(val.department_code)+"]"+" - "+ val.department_name); */
-		                	rowArray.push("["+ $.trim(val.created_by)+"]"+" - "+ val.user_name);
-		                	rowArray.push(A_Taken);
-		                	rowArray.push($.trim(status));  
-		                	//rowArray.push($.trim(val.created_date));  
+		                  	 if(val.theme_code == dname){
+		                     	rowArray.push($.trim(key));
+			                	rowArray.push($.trim(actions));  
+			                 	rowArray.push($.trim(title));
+			                	//rowArray.push("["+ $.trim(val.theme_code)+"]"+" - "+val.theme_name);
+			                	rowArray.push($.trim(val.theme_name));
+			                	rowArray.push($.trim(val.title));
+			                	rowArray.push($.trim(maxRole2));
+			                  	/* rowArray.push("["+ $.trim(val.sbu_code)+"]"+" - "+ val.sbu_name);
+			                   	rowArray.push("["+ $.trim(val.project_code)+"]"+" - "+ val.project_name);
+			                	rowArray.push("["+ $.trim(val.department_code)+"]"+" - "+ val.department_name); */
+			                	rowArray.push("["+ $.trim(val.created_by)+"]"+" - "+ val.user_name);
+			                	rowArray.push(A_Taken);
+			                	rowArray.push($.trim(status));  
+			                	//rowArray.push($.trim(val.created_date));
+			                	 table.row.add(rowArray).draw( true );
+		                  	 }
 		                   
-		                    table.row.add(rowArray).draw( true );
 						});
 					}
 				},error: function (jqXHR, exception) {

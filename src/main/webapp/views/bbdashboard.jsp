@@ -337,7 +337,7 @@
     <input class="tCodes" type="hidden" value="${obj1.theme_code} ${obj1.theme_name}" />
       
        <div style="text-align: end; position: relative;left: 2.5rem;">
-    <button type="button" onclick="location.href='<%=request.getContextPath()%>/dashboardbbnew/${obj1.theme_code}'" class="btn btn-relief-primary" title="View in Detail">Add Idea <i data-feather='arrow-right'></i></button>
+    <button type="button" onclick="location.href='<%=request.getContextPath()%>/dashboardbbnew/${obj1.theme_code}/${obj1.counts}'" class="btn btn-relief-primary" title="View in Detail">Add Idea <i data-feather='arrow-right'></i></button>
 </div>
     
 </h6>

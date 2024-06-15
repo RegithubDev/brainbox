@@ -519,8 +519,8 @@ public class BrainBoxController {
 	
 	
 	
-	@RequestMapping(value = "/dashboardbbnew/{theme_code}", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView bbsubmitformForm(@ModelAttribute User user,BrainBox obj,@PathVariable("theme_code") String theme_code , HttpSession session) {
+	@RequestMapping(value = "/dashboardbbnew/{theme_code}/{counts}", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView bbsubmitformForm(@ModelAttribute User user,BrainBox obj,@PathVariable("theme_code") String theme_code ,@PathVariable("counts") String counts , HttpSession session) {
 		ModelAndView model = new ModelAndView(PageConstants.bbsubmitform);
 		String userId = null;
 		String userName = null;    
@@ -554,7 +554,7 @@ public class BrainBoxController {
 			 
 		     companiesList = service.getThemesInBB(obj);
 		     if(companiesList.size() > 0) {
-				 model.addObject("counts", companiesList.get(0).getCounts());
+				 model.addObject("counts", counts);
 				
 			 }
 		} catch (Exception e) {
