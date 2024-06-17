@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 import com.resustainability.reisp.dao.BBBankDao;
 import com.resustainability.reisp.dao.BrainBoxDao;
 import com.resustainability.reisp.model.BrainBox;
+import com.resustainability.reisp.model.User;
 
 @Service
 public class BBBankService {
 	@Autowired
 	BBBankDao dao;
 
-	public List<BrainBox> getThemeList() {
-		return dao.getThemeList();
+	public List<BrainBox> getThemeList(User user) {
+		return dao.getThemeList(user);
 	}
 
 	public List<BrainBox> getThemeListOne(BrainBox ob) {

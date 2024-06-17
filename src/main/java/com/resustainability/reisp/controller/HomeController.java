@@ -83,11 +83,12 @@ public class HomeController {
 			//User userDetails = service.validateUser(uBoj);
 			//companiesList = service2.getThemesInBB(obj);
 			user.setUser_id(userId);
+			user.setRole(role);
 		//	List<User> rewardsList = service.getRewardsHistory(user);
 			if(role.equals("Admin") || role.equals("Management")) {
 				
 				 model = new ModelAndView(PageConstants.bbdashboard);
-				 List<BrainBox> themeList = service3.getThemeList();
+				 List<BrainBox> themeList = service3.getThemeList(user);
 				 model.addObject("themeList", themeList);
 				 model.setViewName("redirect:/bb-dashboard");
 				// model.addObject("rewardsList", rewardsList);
@@ -101,18 +102,12 @@ public class HomeController {
 					 * 
 					 * }
 					 */ 
-			}else if(role.equals("User")) {
+			}else if(role.equalsIgnoreCase("User")) {
 				 model = new ModelAndView(PageConstants.bbdashboard);
-				 model.setViewName("redirect:/bb-is");
+				 model.setViewName("redirect:/bb-dashboard");
 				// model.addObject("rewardsList", rewardsList);
 				// model.addObject("reward_points", userDetails.getReward_points());
 				 
-			}else {
-				model = new ModelAndView(PageConstants.bbForm);
-				 model.setViewName("redirect:/bb-is");
-				//model.addObject("rewardsList", rewardsList);
-				// model.addObject("reward_points", userDetails.getReward_points());
-				
 			}
 			//List <User> deptList = service.getDeptList(user);
 			//model.addObject("deptList", deptList);
@@ -125,9 +120,18 @@ public class HomeController {
 	@RequestMapping(value = "/bb-dashboard", method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView company(@ModelAttribute User user, HttpSession session) {
 		ModelAndView model = new ModelAndView(PageConstants.bbdashboard);
+		String userId = null;
+		String userName = null;
+		String role = null;
 		Company obj = null;
 		try {
-			List<BrainBox> themeList = service3.getThemeList();
+			userId = (String) session.getAttribute("USER_ID");
+			userName = (String) session.getAttribute("USER_NAME");
+			role = (String) session.getAttribute("BASE_ROLE");
+			String email = (String) session.getAttribute("USER_EMAIL");
+			user.setUser_id(userId);
+			user.setRole(role);
+			List<BrainBox> themeList = service3.getThemeList(user);
 			model.addObject("themeList", themeList);
 			 
 		} catch (Exception e) {

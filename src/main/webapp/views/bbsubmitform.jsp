@@ -281,8 +281,8 @@ tr td:last-child {
                 role="tab"
                 aria-controls="profile-just"
                 aria-selected="true"
-                 >Ideas <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-float waves-light">
-<i class='fa-solid fa-shake' style="margin-right: 0.0rem;"><span id="counts" style="font-style: initial;">0</span></i></button></a
+                 >Ideas<!--  <button type="button" class="btn btn-icon btn-icon rounded-circle btn-danger waves-effect waves-float waves-light">
+<i class='fa-solid fa-shake' style="margin-right: 0.0rem;"><span id="counts" style="font-style: initial;">0</span></i></button> --></a
               >
             </li>
           <%--   </c:if> --%>

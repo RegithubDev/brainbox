@@ -242,6 +242,7 @@
               </div>
             </div>
             <c:forEach var="obj1" items="${themeList}">
+            
 			    <c:set var="statusList" value="${fn:split(obj1.status, ',')}" />
 			    <c:forEach var="status" items="${statusList}">
 			        <c:choose>
@@ -256,6 +257,7 @@
 			            </c:when>
 			        </c:choose>
 			    </c:forEach>
+			    
 			</c:forEach>
             <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
               <div class="d-flex flex-row">
@@ -341,9 +343,7 @@
 </div>
     
 </h6>
- 
-          
-          <!-- Horizontal buttons with values and labels -->
+ <!-- Horizontal buttons with values and labels -->
           <div class="button-container">
             <button type="button" class="btn btn-outline-primary">
               <div class="count">${obj1.in_progress_count}</div>
@@ -394,7 +394,7 @@
     </div>
   </c:if>
   
-  <c:if test="${not empty themeList}">
+  <c:if test="${not empty themeList} ">
     <div class="col-12 text-center no-result no-items">
       <h4 class="mt-4">Search result not found!!</h4>
     </div>
@@ -404,15 +404,9 @@
 
 
 </section>
-<!-- Knowledge base ends -->
-
-        </div>
-      </div>
+   </div>
     </div>
-    <!-- END: Content-->
-    <!-- BEGIN: Customizer-->
-    <!-- End: Customizer-->
-    <!-- Buynow Button-->
+ 
     <div class="sidenav-overlay"></div>
 
     <!-- BEGIN: Footer-->
