@@ -25,7 +25,7 @@ public class BBBankDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate ;
 	
-	@Autowired
+	@Autowired  
 	DataSourceTransactionManager transactionManager;
 
 	public List<BrainBox> getThemeList(User obj) {
