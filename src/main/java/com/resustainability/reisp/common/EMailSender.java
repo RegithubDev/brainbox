@@ -36,6 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.resustainability.reisp.common.EMailSender;
 import com.resustainability.reisp.model.BrainBox;
+import com.resustainability.reisp.model.Noida;
 import com.resustainability.reisp.model.BrainBox;
 import com.resustainability.reisp.model.RoleMapping;
 import com.resustainability.reisp.model.User;
@@ -275,6 +276,33 @@ private static Logger logger = Logger.getLogger(EMailSender.class);
 		}
 		return isSend;
 		
+	}
+	public boolean sendN(String toAddress, String subject, String body, Noida obj, String subject2) throws UnsupportedEncodingException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException, NullPointerException {
+		boolean isSend = false;		
+		try {
+			MimeMessage message = new MimeMessage(getSession());
+			message.setFrom(new InternetAddress(mailId, subject2));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(toAddress));
+			message.setRecipients(Message.RecipientType.CC,InternetAddress.parse("saidileep.p@resustainability.com"));
+			message.setRecipients(Message.RecipientType.BCC,InternetAddress.parse("finance.mswnoida@resustainability.com"));
+			//message.setRecipients(Message.RecipientType.BCC,InternetAddress.parse(mailId));
+			message.setSubject(subject,"UTF-8");
+			Multipart mp = new MimeMultipart();
+			MimeBodyPart htmlPart = new MimeBodyPart();
+			
+			htmlPart.setContent(message, "text/html");
+			mp.addBodyPart(htmlPart);
+			message.setContent(mp);
+			message.setText( body,"utf-8", "html");
+			
+			Transport.send(message);
+			logger.info("Email sent successfully");
+			isSend = true;
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			logger.error("Exception occured while sending an email: "+e.getMessage());			
+		}
+		return isSend;
 	}
 	
 	

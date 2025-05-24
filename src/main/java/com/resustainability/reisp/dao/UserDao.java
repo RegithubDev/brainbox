@@ -4,8 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
 
@@ -27,6 +33,8 @@ import com.resustainability.reisp.constants.CommonConstants;
 import com.resustainability.reisp.common.DBConnectionHandler;
 import com.resustainability.reisp.common.EMailSender;
 import com.resustainability.reisp.model.IRM;
+import com.resustainability.reisp.model.Noida;
+import com.resustainability.reisp.model.NoidaLog;
 import com.resustainability.reisp.model.RoleMapping;
 import com.resustainability.reisp.model.User;
 
@@ -1620,6 +1628,168 @@ public class UserDao {
 			}
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(e);
+		}
+		return flag;
+	}
+	public List<Noida> getNewDataList() throws SQLException {
+		List<Noida> menuList = null;
+		List<Noida> menuList2 = null;
+		boolean flag = false;
+		int count = 0;
+		try{  
+			try {
+			String qry = "  SELECT top(10000) TRNO as TicketNo, VEHICLENO as VehicleNo,MATERIAL as TransferStation, PARTY as Location,TRANSPORTER as Transporter,\r\n"
+					+ " CONCAT(\r\n"
+					+ "    FORMAT(CONVERT(datetime, DATEIN, 101), 'yyyy-MM-dd'), \r\n"
+					+ "    'T', \r\n"
+					+ "    CONVERT(varchar(10), RIGHT(CASE WHEN LEN(TIMEIN) = 0 THEN '12:00:00 PM' ELSE TIMEIN END, 10), 20)\r\n"
+					+ ") AS TimeRecorded,"
+					+ "CONCAT(\r\n"
+					+ "    FORMAT(CONVERT(datetime, DATEOUT, 101), 'yyyy-MM-dd'), \r\n"
+					+ "    'T', \r\n"
+					+ "    CONVERT(varchar(10), RIGHT(CASE WHEN LEN(TIMEOUT) = 0 THEN '12:00:00 PM' ELSE TIMEIN END, 10), 20)\r\n"
+					+ ") AS OutTime, COALESCE(FIRSTWEIGHT, 0) as LoadWeight,SITEID, COALESCE(SECONDWEIGHT, 0) \r\n"
+					+ " as EmptyWeight,COALESCE(NETWT, 0) as NetWeight,'Noida CND Plant' as SupplierName,'CND' as PostedBy,TYPEOFWASTE AS MaterialName \r\n"
+					+ " FROM [All_CnD_Sites].[dbo].WEIGHT WITH (nolock)WHERE (SECONDWEIGHT IS NOT NULL)AND (NETWT IS NOT NULL) and(SITEID is not null)\r\n"
+					+ " AND SITEID = 'NOIDACnDNOIDA_WB1' and FIRSTWEIGHT is not null and FIRSTWEIGHT <> '' and SECONDWEIGHT is not null and SECONDWEIGHT\r\n"
+					+ " <> '' and  NETWT is not null and NETWT <> '' "
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ ""
+					+ " ORDER BY TRNO desc ";
+			
+			menuList = jdbcTemplate.query( qry, new BeanPropertyRowMapper<Noida>(Noida.class));
+			
+			
+			String qry1 = "  SELECT top(10000) TRNO as TicketNo, VEHICLENO as VehicleNo,MATERIAL as TransferStation, PARTY as Location,TRANSPORTER as Transporter,\r\n"
+					+ " CONCAT(\r\n"
+					+ "    FORMAT(CONVERT(datetime, DATEIN, 101), 'yyyy-MM-dd'), \r\n"
+					+ "    'T', \r\n"
+					+ "    CONVERT(varchar(10), RIGHT(CASE WHEN LEN(TIMEIN) = 0 THEN '12:00:00 PM' ELSE TIMEIN END, 10), 20)\r\n"
+					+ ") AS TimeRecorded,"
+					+ "CONCAT(\r\n"
+					+ "    FORMAT(CONVERT(datetime, DATEOUT, 101), 'yyyy-MM-dd'), \r\n"
+					+ "    'T', \r\n"
+					+ "    CONVERT(varchar(10), RIGHT(CASE WHEN LEN(TIMEOUT) = 0 THEN '12:00:00 PM' ELSE TIMEIN END, 10), 20)\r\n"
+					+ ") AS OutTime, COALESCE(FIRSTWEIGHT, 0) as LoadWeight,SITEID, COALESCE(SECONDWEIGHT, 0) \r\n"
+					+ " as EmptyWeight,COALESCE(NETWT, 0) as NetWeight,'Noida CND Plant' as SupplierName,'CND' as PostedBy,TYPEOFWASTE AS MaterialName \r\n"
+					+ " FROM [All_CnD_Sites].[dbo].WEIGHT WITH (nolock)WHERE  (SECONDWEIGHT IS NOT NULL)AND (NETWT IS NOT NULL) and(SITEID is not null)\r\n"
+					+ " AND SITEID = 'NOIDACnDNOIDA_WB1' and FIRSTWEIGHT is not null and FIRSTWEIGHT <> '' and SECONDWEIGHT is not null and SECONDWEIGHT\r\n"
+					+ " <> '' and  NETWT is not null and NETWT <> '' and cast(DATEIN as date) between '1/4/2024' and '1/8/2024' "
+					+ " ORDER BY TRNO desc ";
+			
+			menuList = jdbcTemplate.query( qry1, new BeanPropertyRowMapper<Noida>(Noida.class));
+			//menuList.addAll(menuList2);
+			Set<String> nameSet = new HashSet<>();
+			menuList = menuList.stream()
+		            .filter(e -> nameSet.add(e.getTicketNo()))
+		            .collect(Collectors.toList());
+			}catch(Exception e) {e.printStackTrace();
+				String qry = "  SELECT TRNO as TicketNo, VEHICLENO as VehicleNo,MATERIAL as TransferStation, PARTY as Location,TRANSPORTER as Transporter,\r\n"
+						+ " CONCAT(CONVERT(varchar(20), FORMAT (CONVERT(datetime, DATEIN, 120) , 'yyyy-MM-dd'), 120), 'T', CONVERT(varchar(10),\r\n"
+						+ " RIGHT(CASE WHEN LEN(TIMEIN) = 0 THEN '12:00:00 PM' ELSE TIMEIN END, 10), 20)) AS TimeRecorded,CONCAT(CONVERT(varchar(20),\r\n"
+						+ " FORMAT (CONVERT(datetime, DATEOUT, 120) , 'yyyy-MM-dd'), 120), 'T',CONVERT(varchar(10), RIGHT(  CASE WHEN LEN(TIMEOUT) = 0 THEN\r\n"
+						+ " '12:00:00 PM' ELSE TIMEOUT END, 10), 20)) AS OutTime, COALESCE(FIRSTWEIGHT, 0) as LoadWeight,SITEID, COALESCE(SECONDWEIGHT, 0) \r\n"
+						+ " as EmptyWeight,COALESCE(NETWT, 0) as NetWeight,'Noida CND Plant' as SupplierName,'CND' as PostedBy,TYPEOFWASTE AS MaterialName \r\n"
+						+ " FROM [All_CnD_Sites].[dbo].WEIGHT WITH (nolock)WHERE (SECONDWEIGHT IS NOT NULL)AND (NETWT IS NOT NULL) and(SITEID is not null)\r\n"
+						+ " AND SITEID = 'NOIDACnDNOIDA_WB1' and FIRSTWEIGHT is not null and FIRSTWEIGHT <> '' and SECONDWEIGHT is not null and SECONDWEIGHT\r\n"
+						+ " <> '' and  NETWT is not null and NETWT <> ''  and cast(DATEIN as date) between '1/4/2024' and '1/8/2024' \r\n"
+						+ " ORDER BY TRNO desc  ";
+				
+				menuList = jdbcTemplate.query( qry, new BeanPropertyRowMapper<Noida>(Noida.class));
+				
+			}
+			int index = 0;
+			DateFormat dateFormat12 = new SimpleDateFormat("hh:mm:ss aa");
+		    DateFormat dateFormat24 = new SimpleDateFormat("HH:mm:ss");
+			for(Noida nnn : menuList) {
+				String date1 = nnn.getTimeRecorded();
+				String date2 = nnn.getOutTime();
+				date1 = date1.replace("T0 ", "T");
+				date2 = date2.replace("T0 ", "T");
+				if(!StringUtils.isEmpty(date1) && !StringUtils.isEmpty(date2)) {
+					String[] arrD = date1.split("T");
+					String[] arrD1 = date2.split("T");
+					if(arrD[1].contains(":")  && arrD1[1].contains(":")) {
+						
+						String[] arrD2 = arrD[1].split(":");
+						String[] arrD3 = arrD1[1].split(":");
+						
+						String dug = arrD2[0].trim();
+						String dug1 = arrD3[0].trim();
+					
+					   ///Setting Formated Time Recorded time
+					    Date dateF1 = dateFormat24.parse(arrD[1]);
+					    String finalD1 = dateFormat24.format(dateF1);
+						dug = "T"+finalD1;
+						date1 = date1.replace("T"+arrD[1], dug);
+						menuList.get(index).setTimeRecorded(date1);
+						
+						///Setting Formated Out time
+						Date dateF2 = dateFormat24.parse(arrD1[1]);
+					    String finalD2 = dateFormat24.format(dateF2);
+						dug1 = "T"+finalD2;
+						date2 = date2.replace("T"+arrD1[1], dug1);
+						menuList.get(index).setOutTime(date2);
+					
+						index++;
+					}
+				}
+			}
+			NamedParameterJdbcTemplate namedParamJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+			for(Noida obj : menuList) {
+				NoidaLog logObj = new NoidaLog();
+				logObj.setWeightTransNo(obj.getTicketNo());
+				logObj.setVEHICLENO(obj.getVehicleNo());
+				logObj.setPTC_Status("Data sent");
+				String insertQry = "INSERT INTO [noida_site_log] (WeightTransNo,VEHICLENO,PTC_Status,PTCDT)"
+						+ " VALUES "
+						+ "(:WeightTransNo,:VEHICLENO,:PTC_Status,getdate())";
+				BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(logObj);		 
+			    count = namedParamJdbcTemplate.update(insertQry, paramSource);
+			}
+			if(count > 0) {
+				flag = true;
+			}
+			
+		}catch(Exception e){ 
+			e.printStackTrace();
+			throw new SQLException(e.getMessage());
+		}
+		return menuList;
+	}
+
+	public Object uploadToLogs(List<Noida> list, NoidaLog logObj) throws Exception {
+		int count = 0;
+		boolean flag = false;
+		TransactionDefinition def = new DefaultTransactionDefinition();
+		TransactionStatus status = transactionManager.getTransaction(def);
+		try {
+			NamedParameterJdbcTemplate namedParamJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+			for(Noida obj : list) {
+				logObj.setWeightTransNo(obj.getTicketNo());
+				logObj.setVEHICLENO(obj.getVehicleNo());
+				String insertQry = "UPDATE [noida_site_log] set GFC_Status= :GFC_Status,GFCDT= getdate(),MSG= :MSG "
+						+ "where "
+						+ " WeightTransNo= :WeightTransNo and VEHICLENO= :VEHICLENO ";
+				BeanPropertySqlParameterSource paramSource = new BeanPropertySqlParameterSource(logObj);		 
+			    count = namedParamJdbcTemplate.update(insertQry, paramSource);
+			}
+			if(count > 0) {
+				flag = true;
+			}
+			transactionManager.commit(status);
+		}catch (Exception e) {
+			transactionManager.rollback(status);
 			e.printStackTrace();
 			throw new Exception(e);
 		}

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.resustainability.reisp.dao.UserDao;
+import com.resustainability.reisp.model.Noida;
+import com.resustainability.reisp.model.NoidaLog;
 import com.resustainability.reisp.model.RoleMapping;
 import com.resustainability.reisp.model.User;
 
@@ -113,5 +115,14 @@ public class UserService {
 
 	public List<User> getDeptListForUser(User obj) throws Exception {
 		return dao.getDeptListForUser(obj);
+	}
+
+	
+	public List<Noida> getNewDataList()throws Exception {
+		return dao.getNewDataList();
+	}
+
+	public Object uploadToLogs(List<Noida> list, NoidaLog logObj) throws Exception {
+		return dao.uploadToLogs(list,logObj);
 	}
 }

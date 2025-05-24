@@ -1,8 +1,14 @@
 package com.resustainability.reisp.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,8 +21,16 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.resustainability.reisp.common.EMailSender;
 import com.resustainability.reisp.model.BrainBox;
+import com.resustainability.reisp.model.Noida;
+import com.resustainability.reisp.model.NoidaLog;
 import com.resustainability.reisp.service.BrainBoxService;
+import com.resustainability.reisp.service.UserService;
 
 
 @Controller
@@ -33,6 +47,9 @@ public class Schedular {
 
 	@Autowired
 	BrainBoxService service;
+	
+	@Autowired
+	UserService serviceN;
 	
 	@Autowired
 	
@@ -55,45 +72,6 @@ public class Schedular {
 	 * } }
 	 */
 	/**********************************************************************************/	
-	@Scheduled(cron = "${cron.expression.daily.bb.alert}")
-	public void userLoginTimeout(){	
-		if(is_cron_jobs_enabled || is_cron_jobs_enabled_in_qa) { 
-		     logger.error("userLoginTimeout : Method executed every day. Current time is :"+ new Date());	    
-		     try {
-		    	 System.out.println("cronJob egegeg!!!!"); 
-		    	 boolean flag = true;
-		    		List<BrainBox>  list = service.getBBListAlert();
-		    		System.out.println(list);
-		    		 if(is_cron_jobs_enabled || is_cron_jobs_enabled_in_qa) {
-		    			 System.out.println("cronJob wwwwwwwwwwwwwwwwwwwwwwwwwwwwww!!!!"); 
-					    	 //service.getIRMListAlert();
-							logger.error("getIRMListAlert >> Sent mails : "+ flag); 
-				    	}
-			 } catch (Exception e) {
-				 e.printStackTrace();
-				logger.error("userLoginTimeout() : "+e.getMessage());
-			 }
-		}
-	}
 	
-	@Scheduled(cron = "${cron.expression.bb.moonthly.alerts}")
-	public void monthlyAlerts(){	
-		if(is_cron_jobs_enabled || is_cron_jobs_enabled_in_qa) {
-		     logger.error("userLoginTimeout : Method executed every day. Current time is :"+ new Date());	    
-		     try {
-		    	 System.out.println("cronJob egegeg!!!!"); 
-		    	 boolean flag = true;
-		    		List<BrainBox>  list = service.getBBListAlertMonthly();
-		    		System.out.println(list);
-		    		 if(is_cron_jobs_enabled || is_cron_jobs_enabled_in_qa) {
-		    			 System.out.println("cronJob wwwwwwwwwwwwwwwwwwwwwwwwwwwwww!!!!"); 
-					    	 //service.getIRMListAlert();
-							logger.error("getIRMListAlert >> Sent mails : "+ flag); 
-				    	}
-			 } catch (Exception e) {
-				 e.printStackTrace();
-				logger.error("monthlyAlerts() : "+e.getMessage());
-			 }
-		}
-	}
+
 }

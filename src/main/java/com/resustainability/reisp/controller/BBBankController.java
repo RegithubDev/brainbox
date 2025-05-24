@@ -78,7 +78,7 @@ public class BBBankController {
 			User uBoj = new User();
 			uBoj.setEmail_id(email);
 			
-			List<BrainBox> themeList = service.getThemeList();
+			List<BrainBox> themeList = service.getThemeList(user);
 			model.addObject("themeList", themeList);
 			
 			List<BrainBox> sbuList = service2.getSbuList();
@@ -99,7 +99,9 @@ public class BBBankController {
 			userId = (String) session.getAttribute("USER_ID");
 			userName = (String) session.getAttribute("USER_NAME");
 			role = (String) session.getAttribute("BASE_ROLE");idea_role = (String) session.getAttribute("IDEA_BASE_ROLE");
-
+			User user =  new User();
+			user.setRole(role);
+			user.setUser_id(userId);
 			bb.setUser_id(userId);
 			bb.setUser_name(userName);
 			String email = (String) session.getAttribute("USER_EMAIL");
@@ -107,7 +109,7 @@ public class BBBankController {
 			bb.setCreated_by(userId);
 			bb.setRole(role);
 			bb.setIdea_base_role(idea_role);
-			List<BrainBox> themeList = service.getThemeList();
+			List<BrainBox> themeList = service.getThemeList(user);
 			model.addObject("themeList", themeList);
 			
 			List<BrainBox> sbuList = service2.getSBUList();
